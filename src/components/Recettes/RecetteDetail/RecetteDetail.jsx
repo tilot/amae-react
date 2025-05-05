@@ -1,11 +1,13 @@
+// Composant principal pour l'affichage des détails des recettes d'une catégorie
 import React from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom'; // À décommenter si besoin de filtrer par catégorie
 import './RecetteDetail.css';
 
 const RecetteDetail = () => {
-  const { category } = useParams();
+  // Pour filtrer selon la catégorie, utiliser :
+  // const { category } = useParams();
 
-  // Données temporaires pour les recettes
+  // Données temporaires pour les recettes (à remplacer par un fetch API plus tard)
   const recettes = [
     {
       id: 1,
@@ -35,14 +37,18 @@ const RecetteDetail = () => {
 
   return (
     <div className="recette-detail">
+      {/* Titre principal */}
       <h1 className="recette-title">RECETTES</h1>
 
+      {/* Liste des recettes sous forme de cartes */}
       <div className="recettes-list">
         {recettes.map(recette => (
           <div key={recette.id} className="recette-card">
+            {/* Image de la recette */}
             <div className="recette-image">
               <img src={recette.image} alt={recette.name} />
             </div>
+            {/* Informations sur la recette */}
             <div className="recette-info">
               <h3>{recette.name}</h3>
               <p>Durée de préparation: {recette.prepTime}</p>
@@ -52,6 +58,7 @@ const RecetteDetail = () => {
         ))}
       </div>
 
+      {/* Icônes de navigation en bas de page */}
       <div className="navigation-icons">
         <button className="nav-icon">
           <img src="/icons/calendar.svg" alt="Calendrier" />
@@ -70,6 +77,7 @@ const RecetteDetail = () => {
         </button>
       </div>
 
+      {/* Bannière publicitaire en bas de page */}
       <div className="pub-banner">
         <p>PUB</p>
       </div>

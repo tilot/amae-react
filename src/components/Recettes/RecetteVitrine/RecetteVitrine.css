@@ -1,9 +1,11 @@
+/* Conteneur principal de la vitrine des recettes */
 .recette-vitrine {
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
+/* Titre principal */
 .recette-title {
   text-align: center;
   font-size: 2rem;
@@ -11,18 +13,21 @@
   margin-bottom: 2rem;
 }
 
+/* Bloc des catégories (Salé/Sucré) */
 .recette-categories {
   display: flex;
   gap: 20px;
   margin-bottom: 2rem;
 }
 
+/* Carte de catégorie */
 .category-card {
   flex: 1;
   text-decoration: none;
   color: inherit;
 }
 
+/* Image de la catégorie */
 .category-image {
   position: relative;
   width: 100%;
@@ -35,24 +40,28 @@
   overflow: hidden;
 }
 
+/* Image de fond pour la catégorie Salé */
 .sale-image {
   background-image: url('/images/sale-placeholder.jpg');
   background-size: cover;
   background-position: center;
 }
 
+/* Image de fond pour la catégorie Sucré */
 .sucre-image {
   background-image: url('/images/sucre-placeholder.jpg');
   background-size: cover;
   background-position: center;
 }
 
+/* Texte sur la catégorie */
 .category-text {
   font-size: 2rem;
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+/* Icônes de navigation */
 .navigation-icons {
   display: flex;
   justify-content: space-around;
@@ -75,6 +84,7 @@
   height: 24px;
 }
 
+/* Bannière publicitaire */
 .pub-banner {
   width: 100%;
   height: 100px;
