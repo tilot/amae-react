@@ -3,7 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import ErrorPage from "../pages/404";
 import LoginPage from "../pages/LoginPage";
 import RecetteVitrinePage from "../pages/RecetteVitrinePage";
-// import RecetteDetailPage from "../pages/RecetteDetailPage";
+import RecetteDetailPage from "../pages/RecetteDetailPage";
 // import HomePage from "../pages/HomePage";
 // import { RecipePage } from "../pages/RecipePage";
 
@@ -14,12 +14,8 @@ const router = createBrowserRouter([
                element: <LoginPage />, errorElement: <ErrorPage /> },
           { path: "/recettevitrine",
                element: <RecetteVitrinePage />, errorElement: <ErrorPage /> },
-          // { path: "/recettedetail",
-          //      element: <RecetteDetailPage />, errorElement: <ErrorPage /> }
-     
-    
-
-//   { path: "/recette/:id", element: <RecipePage /> },  
+          { path: "/recettedetail",
+               element: <RecetteDetailPage />, errorElement: <ErrorPage /> } 
 
 ]);
 
