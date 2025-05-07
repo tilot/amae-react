@@ -4,6 +4,8 @@ import ErrorPage from "../pages/404";
 import LoginPage from "../pages/LoginPage";
 import RecetteVitrinePage from "../pages/RecetteVitrinePage";
 import RecetteDetailPage from "../pages/RecetteDetailPage";
+import ActiviteVitrinePage from "../pages/ActiviteVitrinePage";
+import ActiviteDetailPage from "../pages/ActiviteDetailPage";
 // import HomePage from "../pages/HomePage";
 // import { RecipePage } from "../pages/RecipePage";
 
@@ -15,8 +17,11 @@ const router = createBrowserRouter([
           { path: "/recettevitrine",
                element: <RecetteVitrinePage />, errorElement: <ErrorPage /> },
           { path: "/recettedetail",
-               element: <RecetteDetailPage />, errorElement: <ErrorPage /> } 
-
+               element: <RecetteDetailPage />, errorElement: <ErrorPage /> },
+          { path: "/activitevitrine",
+               element: <ActiviteVitrinePage />, errorElement: <ErrorPage /> },
+          { path: "/activitedetail",
+               element: <ActiviteDetailPage />, errorElement: <ErrorPage /> }
 ]);
 
 export default router;
