@@ -1,0 +1,94 @@
+.recette-vitrine-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem 1rem 5rem 1rem;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recette-vitrine-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 2rem;
+  align-self: flex-start;
+}
+
+.recette-vitrine-cards {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.recette-vitrine-card {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.2s;
+}
+.recette-vitrine-card:hover {
+  transform: scale(1.03);
+}
+.recette-vitrine-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+.recette-vitrine-label {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  background: rgba(255,255,255,0.85);
+  color: #222;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 0.5rem 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.recette-vitrine-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #c7b6dd;
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 1.2rem 0 1.5rem 0;
+  z-index: 10;
+}
+.footer-icon {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.footer-icon:active, .footer-icon:focus {
+  color: #a084ca;
+}
+
+@media (max-width: 500px) {
+  .recette-vitrine-container {
+    max-width: 100vw;
+    border-radius: 0;
+    padding: 1rem 0 5rem 0;
+  }
+  .recette-vitrine-img {
+    height: 120px;
+  }
+} 
