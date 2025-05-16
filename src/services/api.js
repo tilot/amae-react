@@ -82,7 +82,7 @@ export const activityService = {
   // Récupérer toutes les activités
   getAllActivities: async () => {
     try {
-      const response = await api.get('/activities');
+      const response = await api.get('/activity');
       return response.data;
     } catch (error) {
       console.error('Erreur lors de la récupération des activités:', error);
@@ -93,7 +93,7 @@ export const activityService = {
   // Récupérer uniquement les activités d'intérieur
   getInsideActivities: async () => {
     try {
-      const response = await api.get('/activities');
+      const response = await api.get('/activity');
       return response.data.filter(a => a.Id_Inside_Outside === 1);
     } catch (error) {
       console.error('Erreur lors de la récupération des activités intérieures:', error);
@@ -104,7 +104,7 @@ export const activityService = {
   // Récupérer uniquement les activités d'extérieur
   getOutsideActivities: async () => {
     try {
-      const response = await api.get('/activities');
+      const response = await api.get('/activity');
       return response.data.filter(a => a.Id_Inside_Outside === 2);
     } catch (error) {
       console.error('Erreur lors de la récupération des activités extérieures:', error);

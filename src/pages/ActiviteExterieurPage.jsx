@@ -33,15 +33,15 @@ const ActiviteExterieurPage = () => {
       {error && <div className="error">{error}</div>}
       <div className="activite-categorie-list">
         {activities.map(activity => (
-          <div className="activite-categorie-item" key={activity.id}>
-            <img src={activity.image_url || '/default-activity.jpg'} alt={activity.title} className="activite-categorie-img" />
+          <div className="activite-categorie-item" key={activity.Id_Activité}>
+            <img src={activity.picture || '/default-activity.jpg'} alt={activity.name} className="activite-categorie-img" />
             <div className="activite-categorie-info">
-              <h3>{activity.title}</h3>
+              <h3>{activity.name}</h3>
               <div className="activite-categorie-meta">
-                <span><i className="fas fa-calendar"></i> {new Date(activity.date).toLocaleDateString()}</span>
-                <span><i className="fas fa-map-marker-alt"></i> {activity.location}</span>
+                <span><i className="fas fa-calendar"></i> {activity.start_date ? new Date(activity.start_date).toLocaleDateString() : ''}</span>
+                <span><i className="fas fa-map-marker-alt"></i> {activity.place}</span>
               </div>
-              <Link to={`/activite/${activity.id}`} className="activite-categorie-link">Voir l'activité</Link>
+              <Link to={`/activite/${activity.Id_Activité}`} className="activite-categorie-link">Voir l'activité</Link>
             </div>
           </div>
         ))}
