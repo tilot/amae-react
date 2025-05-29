@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = 'http://localhost:3001';
 
 // Configuration d'axios avec l'URL de base
 const api = axios.create({
@@ -118,7 +118,7 @@ export const activityService = {
       const response = await api.get(`/activities/${id}`);
       return response.data;
     } catch (error) {
-      console.error('Erreur lors de la récupération de l\'activité:', error);
+      console.error(`Erreur lors de la récupération de l'activité:`, error);
       throw error;
     }
   },
@@ -129,7 +129,7 @@ export const activityService = {
       const response = await api.post('/activities', activityData);
       return response.data;
     } catch (error) {
-      console.error('Erreur lors de la création de l\'activité:', error);
+      console.error(`Erreur lors de la récupération de l'activité:`, error);
       throw error;
     }
   },
@@ -140,7 +140,7 @@ export const activityService = {
       const response = await api.put(`/activities/${id}`, activityData);
       return response.data;
     } catch (error) {
-      console.error('Erreur lors de la mise à jour de l\'activité:', error);
+      console.error(`Erreur lors de la récupération de l'activité:`, error);
       throw error;
     }
   },
@@ -151,7 +151,7 @@ export const activityService = {
       const response = await api.delete(`/activities/${id}`);
       return response.data;
     } catch (error) {
-      console.error('Erreur lors de la suppression de l\'activité:', error);
+      console.error(`Erreur lors de la récupération de l'activité:`, error);
       throw error;
     }
   }

@@ -15,7 +15,7 @@ const ActiviteInterieurPage = () => {
         setActivities(data);
         setLoading(false);
       } catch {
-        setError('Erreur lors du chargement des activités d\'intérieur');
+        setError(`Erreur lors du chargement des activités d'intérieur`);
         setLoading(false);
       }
     };
