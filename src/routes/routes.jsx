@@ -10,8 +10,10 @@ import ActiviteVitrinePage from "../pages/ActiviteVitrinePage";
 import ActiviteInterieurPage from "../pages/ActiviteInterieurPage";
 import ActiviteExterieurPage from "../pages/ActiviteExterieurPage";
 import ActiviteDetailPage from "../pages/ActiviteDetailPage";
-import RecetteList from "../components/Recettes/RecetteList/RecetteList";
-import ActiviteList from "../components/Activites/ActiviteList/ActiviteList";
+import MoodboardListPage from "../pages/MoodboardListPage";
+import MoodboardDetailPage from "../pages/MoodboardDetailPage";
+import SmartDealListPage from "../pages/SmartDealListPage";
+import SmartDealDetailPage from "../pages/SmartDealDetailPage";
 // import HomePage from "../pages/HomePage";
 // import { RecipePage } from "../pages/RecipePage";
 
@@ -61,6 +63,23 @@ const router = createBrowserRouter([
     path: "/activite/:id", 
     element: <ActiviteDetailPage />, 
     errorElement: <ErrorPage /> 
+  },
+  {
+    path: "/moodboard",
+    element: <MoodboardListPage />,
+    errorElement: <ErrorPage />
+  },
+  {path: "/moodboard/:id",
+    element: <MoodboardDetailPage />,
+    errorElement: <ErrorPage />
+  },
+  {path: "/smart_Deal",
+    element: <SmartDealListPage />,
+    errorElement: <ErrorPage />
+  },
+  {path: "/smart_Deal/:id",
+    element: <SmartDealDetailPage />,
+    errorElement: <ErrorPage />
   }
 ]);
 

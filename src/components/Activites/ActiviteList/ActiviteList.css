@@ -1,63 +1,123 @@
+.amae-bg {
+  background: #fafafd;
+}
+.amae-title {
+  text-align: center;
+  color: #a18acb;
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  letter-spacing: 1px;
+}
+.amae-card {
+  border-radius: 28px !important;
+  box-shadow: 0 4px 16px rgba(161, 138, 203, 0.10);
+  background: #fff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s;
+}
+.amae-card:hover {
+  transform: translateY(-4px) scale(1.01);
+}
+.amae-btn {
+  display: block;
+  width: 100%;
+  background: #cbe3ee;
+  color: #5c4d6d;
+  border: none;
+  border-radius: 18px;
+  padding: 0.7rem 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 1.2rem;
+  margin-bottom: 0.2rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.amae-btn:hover {
+  background: #b6d6e6;
+}
+.amae-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.amae-tab {
+  background: #e6e0f8;
+  color: #7c5fa3;
+  border: none;
+  border-radius: 18px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1.05rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.amae-tab.active, .amae-tab:focus {
+  background: #cbe3ee;
+  color: #5c4d6d;
+}
+
 .activite-list {
-  padding: 2rem;
+  padding: 2rem 0.5rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.activite-list h2 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 2rem;
-  font-size: 2rem;
-}
-
 .activities-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 2rem;
-  padding: 1rem;
+  padding: 1rem 0.5rem;
 }
 
 .activity-card {
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-  text-decoration: none;
-  color: inherit;
-}
-
-.activity-card:hover {
-  transform: translateY(-5px);
+  /* styles hérités de amae-card */
 }
 
 .activity-image {
   width: 100%;
-  height: 200px;
+  height: 210px;
   overflow: hidden;
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px;
+  background: #e6e0f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
 .activity-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px;
 }
 
 .activity-info {
-  padding: 1.5rem;
+  padding: 1.3rem 1.2rem 0.5rem 1.2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .activity-info h3 {
   margin: 0 0 0.5rem 0;
-  color: #333;
-  font-size: 1.25rem;
+  color: #7c5fa3;
+  font-size: 1.18rem;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
 }
 
 .activity-description {
-  color: #666;
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
+  color: #6d5c7c;
+  font-size: 0.97rem;
+  margin-bottom: 0.7rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -67,16 +127,16 @@
 .activity-meta {
   display: flex;
   justify-content: space-between;
-  color: #888;
-  font-size: 0.85rem;
+  color: #a18acb;
+  font-size: 0.93rem;
   margin-bottom: 0.5rem;
 }
 
 .activity-details {
   display: flex;
   justify-content: space-between;
-  color: #888;
-  font-size: 0.85rem;
+  color: #a18acb;
+  font-size: 0.93rem;
   padding-top: 0.5rem;
   border-top: 1px solid #eee;
 }
@@ -87,7 +147,7 @@
 .activity-capacity {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .loading {
@@ -106,11 +166,23 @@
 
 @media (max-width: 768px) {
   .activities-grid {
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1rem;
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    padding: 0.5rem;
   }
-
-  .activite-list {
-    padding: 1rem;
+  .amae-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+  .activity-image {
+    height: 160px;
+  }
+  .amae-tabs {
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+  }
+  .amae-tab {
+    padding: 0.6rem 0.7rem;
+    font-size: 0.98rem;
   }
 } 

@@ -1,71 +1,74 @@
 import React, { useState } from 'react';
-import LoginForm from '../components/LoginForm/LoginForm.jsx';
-import LoginButton from '../components/LoginButton/LoginButton.jsx';
+import { useNavigate, Link } from 'react-router-dom';
+import { authService } from '../services/api';
 import './LoginPage.css';
 
 const LoginPage = () => {
-  const [credentials, setCredentials] = useState({
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
-  
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleInputChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setCredentials({
-      ...credentials,
+    setFormData(prevState => ({
+      ...prevState,
       [name]: value
-    });
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    setError(null);
-    
+    setError('');
+    setLoading(true);
+
     try {
-      // Ici vous intégreriez votre logique d'authentification
-      // Par exemple: await authService.login(credentials);
-      console.log('Tentative de connexion avec:', credentials);
-      
-      // Simulation d'un délai d'authentification
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Redirection après connexion réussie
-      // history.push('/dashboard'); // Si vous utilisez react-router
-      console.log('Connexion réussie!');
+      await authService.login(formData);
+      navigate('/'); // Redirection vers la page d'accueil après connexion
     } catch (err) {
-      setError('Échec de la connexion. Veuillez vérifier vos identifiants.');
-      console.error('Erreur de connexion:', err);
+      setError('Email ou mot de passe incorrect');
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   };
 
   return (
-    <div className="login-page">
-      <div className="login-container">
+    <div className="login-container">
+      <div className="login-box">
         <h1>Connexion</h1>
-        
         {error && <div className="error-message">{error}</div>}
-        
-        <LoginForm 
-          credentials={credentials}
-          handleInputChange={handleInputChange}
-          onSubmit={handleSubmit}
-        >
-          <LoginButton 
-            isLoading={isLoading} 
-            text="Se connecter" 
-            loadingText="Connexion en cours..." 
-          />
-        </LoginForm>
-        
-        <div className="additional-options">
-          <a href="/forgot-password">Mot de passe oublié?</a>
-          <a href="/register">Créer un compte</a>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Mot de passe</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <button type="submit" className="login-button" disabled={loading}>
+            {loading ? 'Connexion en cours...' : 'Se connecter'}
+          </button>
+        </form>
+        <div className="register-link">
+          Pas encore de compte ? <Link to="/register">S'inscrire</Link>
         </div>
       </div>
     </div>

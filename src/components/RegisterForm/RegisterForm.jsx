@@ -1,14 +1,23 @@
 import { useState } from 'react';
+import './RegisterForm.css';
+import logoAmae from '../../assets/images/logo-amae.png';
 
 function RegisterForm() {
   const [formData, setFormData] = useState({
     name: '',
     firstname: '',
+    children_number: '',
+    situation: '',
+    job: '',
+    children_age: '',
+    children_firstname: '',
+    phone_numbers: '',
     mail: '',
     password: '',
     confirmPassword: '',
-    phone_numbers: '',
     adress: '',
+    acceptCGU: false,
+    newsletter: false,
   });
   
   const [error, setError] = useState('');
@@ -16,29 +25,31 @@ function RegisterForm() {
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
   };
 
   const validateForm = () => {
-    // Validation du mot de passe
+    if (!formData.acceptCGU) {
+      setError('Vous devez accepter les CGU');
+      return false;
+    }
     if (formData.password !== formData.confirmPassword) {
       setError('Les mots de passe ne correspondent pas');
       return false;
     }
-    
-    // Validation de l'email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.mail)) {
       setError('Veuillez entrer une adresse email valide');
       return false;
     }
-    
-    // Validation du mot de passe (force)
     if (formData.password.length < 8) {
       setError('Le mot de passe doit contenir au moins 8 caractères');
       return false;
     }
-    
     return true;
   };
 
@@ -46,37 +57,34 @@ function RegisterForm() {
     e.preventDefault();
     setError('');
     setSuccess('');
-    
-    if (!validateForm()) {
-      return;
-    }
-    
+    if (!validateForm()) return;
     setLoading(true);
-    
-    // Créer un objet avec les données à envoyer à l'API
-    // Exclure confirmPassword car il n'est pas attendu par l'API
-    const { confirmPassword, ...dataToSend } = formData;
-
+    const dataToSend = { ...formData };
+    delete dataToSend.confirmPassword;
     try {
       const res = await fetch('http://localhost:3001/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(dataToSend)
       });
-
       const data = await res.json();
-
       if (res.ok) {
         setSuccess('Compte créé avec succès! Vous pouvez maintenant vous connecter.');
-        // Réinitialiser le formulaire
         setFormData({
           name: '',
           firstname: '',
+          children_number: '',
+          situation: '',
+          job: '',
+          children_age: '',
+          children_firstname: '',
+          phone_numbers: '',
           mail: '',
           password: '',
           confirmPassword: '',
-          phone_numbers: '',
           adress: '',
+          acceptCGU: false,
+          newsletter: false,
         });
       } else {
         setError(data.message || 'Erreur lors de l\'inscription');
@@ -90,111 +98,50 @@ function RegisterForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Inscription</h2>
-      
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Nom</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            className="border border-gray-300 p-2 w-full rounded-md"
-          />
+    <div className="register-container">
+      <img src={logoAmae} alt="Logo AMAE" className="amae-logo" />
+      <form onSubmit={handleSubmit} className="register-form">
+        <input type="text" name="name" placeholder="Nom" value={formData.name} onChange={handleChange} className="register-input" required />
+        <input type="text" name="firstname" placeholder="Prénom" value={formData.firstname} onChange={handleChange} className="register-input" required />
+        <select name="children_number" value={formData.children_number} onChange={handleChange} className="register-input" required>
+          <option value="">Nombre(s) d'enfant(s)</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5+">5 ou plus</option>
+        </select>
+        <select name="situation" value={formData.situation} onChange={handleChange} className="register-input" required>
+          <option value="">Situation</option>
+          <option value="parent">Parent</option>
+          <option value="tuteur">Tuteur</option>
+          <option value="autre">Autre</option>
+        </select>
+        <input type="text" name="job" placeholder="Profession" value={formData.job} onChange={handleChange} className="register-input" />
+        <input type="text" name="children_age" placeholder="Âge enfant(s)" value={formData.children_age} onChange={handleChange} className="register-input" />
+        <input type="text" name="children_firstname" placeholder="Prénom(s) enfant(s)" value={formData.children_firstname} onChange={handleChange} className="register-input" />
+        <input type="tel" name="phone_numbers" placeholder="Numéro de portable" value={formData.phone_numbers} onChange={handleChange} className="register-input" />
+        <input type="email" name="mail" placeholder="Adresse mail" value={formData.mail} onChange={handleChange} className="register-input" required />
+        <input type="password" name="password" placeholder="Mot de passe" value={formData.password} onChange={handleChange} className="register-input" required />
+        <input type="password" name="confirmPassword" placeholder="Confirmation du mdp" value={formData.confirmPassword} onChange={handleChange} className="register-input" required />
+        <input type="text" name="adress" placeholder="Adresse postale" value={formData.adress} onChange={handleChange} className="register-input" />
+        <div className="register-checkboxes">
+          <label className="checkbox-label">
+            <input type="checkbox" name="acceptCGU" checked={formData.acceptCGU} onChange={handleChange} required />
+            J'accepte les CGU
+          </label>
+          <label className="checkbox-label">
+            <input type="checkbox" name="newsletter" checked={formData.newsletter} onChange={handleChange} />
+            Je souhaite recevoir les newsletters
+          </label>
         </div>
-        
-        <div>
-          <label htmlFor="firstname" className="block text-sm font-medium text-gray-700 mb-1">Prénom</label>
-          <input
-            type="text"
-            id="firstname"
-            name="firstname"
-            value={formData.firstname}
-            onChange={handleChange}
-            required
-            className="border border-gray-300 p-2 w-full rounded-md"
-          />
-        </div>
-      </div>
-      
-      <div>
-        <label htmlFor="mail" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-        <input
-          type="email"
-          id="mail"
-          name="mail"
-          value={formData.mail}
-          onChange={handleChange}
-          required
-          className="border border-gray-300 p-2 w-full rounded-md"
-        />
-      </div>
-      
-      <div>
-        <label htmlFor="phone_numbers" className="block text-sm font-medium text-gray-700 mb-1">Téléphone</label>
-        <input
-          type="tel"
-          id="phone_numbers"
-          name="phone_numbers"
-          value={formData.phone_numbers}
-          onChange={handleChange}
-          className="border border-gray-300 p-2 w-full rounded-md"
-        />
-      </div>
-      
-      <div>
-        <label htmlFor="adress" className="block text-sm font-medium text-gray-700 mb-1">Adresse</label>
-        <input
-          type="text"
-          id="adress"
-          name="adress"
-          value={formData.adress}
-          onChange={handleChange}
-          className="border border-gray-300 p-2 w-full rounded-md"
-        />
-      </div>
-      
-      <div>
-        <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">Mot de passe</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-          className="border border-gray-300 p-2 w-full rounded-md"
-        />
-      </div>
-      
-      <div>
-        <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">Confirmer le mot de passe</label>
-        <input
-          type="password"
-          id="confirmPassword"
-          name="confirmPassword"
-          value={formData.confirmPassword}
-          onChange={handleChange}
-          required
-          className="border border-gray-300 p-2 w-full rounded-md"
-        />
-      </div>
-      
-      <button 
-        type="submit" 
-        className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
-        disabled={loading}
-      >
-        {loading ? 'Inscription en cours...' : 'S\'inscrire'}
-      </button>
-      
-      {error && <p className="text-red-600 text-center">{error}</p>}
-      {success && <p className="text-green-600 text-center">{success}</p>}
-    </form>
+        <button type="submit" className="register-btn" disabled={loading}>
+          {loading ? 'Inscription en cours...' : 'S\'INSCRIRE'}
+        </button>
+        {error && <p className="register-error">{error}</p>}
+        {success && <p className="register-success">{success}</p>}
+      </form>
+    </div>
   );
 }
 

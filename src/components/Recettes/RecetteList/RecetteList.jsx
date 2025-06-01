@@ -14,7 +14,7 @@ const RecetteList = () => {
         const data = await recipeService.getAllRecipes();
         setRecipes(data);
         setLoading(false);
-      } catch (err) {
+      } catch {
         setError('Erreur lors du chargement des recettes');
         setLoading(false);
       }
@@ -32,11 +32,11 @@ const RecetteList = () => {
   }
 
   return (
-    <div className="recette-list">
-      <h2>Nos Recettes</h2>
+    <div className="recette-list amae-bg">
+      <h2 className="amae-title">Recettes</h2>
       <div className="recipes-grid">
         {recipes.map((recipe) => (
-          <Link to={`/recette/${recipe.id}`} key={recipe.id} className="recipe-card">
+          <div className="recipe-card amae-card" key={recipe.id}>
             <div className="recipe-image">
               <img src={recipe.image_url || '/default-recipe.jpg'} alt={recipe.title} />
             </div>
@@ -51,8 +51,11 @@ const RecetteList = () => {
                   <i className="fas fa-signal"></i> {recipe.difficulty}
                 </span>
               </div>
+              <Link to={`/recette/${recipe.id}`} className="amae-btn">
+                Voir la recette
+              </Link>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </div>

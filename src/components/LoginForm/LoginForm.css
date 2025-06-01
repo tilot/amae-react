@@ -40,3 +40,87 @@
     transform: translateY(0);
   }
 }
+
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #fafafd;
+}
+
+.amae-logo {
+  width: 220px;
+  margin-bottom: 2.5rem;
+  margin-top: 2rem;
+}
+
+.login-form {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(180, 160, 200, 0.10);
+  padding: 2.5rem 2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-width: 320px;
+  max-width: 90vw;
+}
+
+.login-input {
+  background: #e6e0f8;
+  border: none;
+  border-radius: 18px;
+  padding: 1rem 1.2rem;
+  font-size: 1rem;
+  color: #5c4d6d;
+  margin-bottom: 0.5rem;
+  outline: none;
+  transition: box-shadow 0.2s;
+}
+.login-input:focus {
+  box-shadow: 0 0 0 2px #b9b6e5;
+}
+
+.login-btn {
+  background: #cbe3ee;
+  color: #5c4d6d;
+  border: none;
+  border-radius: 18px;
+  padding: 0.9rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background 0.2s;
+}
+.login-btn:hover:not(:disabled) {
+  background: #b6d6e6;
+}
+.login-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.login-error {
+  color: #d9534f;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+.login-success {
+  color: #4bb543;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 500px) {
+  .login-form {
+    min-width: 90vw;
+    padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+  }
+  .amae-logo {
+    width: 150px;
+    margin-bottom: 1.2rem;
+  }
+}
