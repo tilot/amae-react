@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { authService } from '../services/api';
 import './RegisterPage.css';
+import Footer from '../components/Footer/Footer_Gros';
 
 const RegisterPage = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     firstname: '',
-    email: '',
+    mail: '',
     password: '',
     confirmPassword: '',
     phone_numbers: '',
@@ -18,6 +19,7 @@ const RegisterPage = () => {
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,10 +43,14 @@ const RegisterPage = () => {
 
     try {
       // Suppression du champ confirmPassword avant l'envoi
-      const { confirmPassword, ...userData } = formData;
+      const userData = { ...formData };
+      delete userData.confirmPassword;
+      userData.Id_Calendrier = 1;
+      userData.Id_CSP = 1;
       await authService.register(userData);
-      navigate('/login'); // Redirection vers la page de connexion après inscription
-    } catch (err) {
+      setSuccess('Inscription réussie ! Redirection vers la connexion...');
+      setTimeout(() => navigate('/'), 1500); // Redirection après 1,5s
+    } catch {
       setError('Erreur lors de l\'inscription. Veuillez réessayer.');
     } finally {
       setLoading(false);
@@ -56,6 +62,7 @@ const RegisterPage = () => {
       <div className="register-box">
         <h1>Inscription</h1>
         {error && <div className="error-message">{error}</div>}
+        {success && <div className="success-message">{success}</div>}
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="name">Nom</label>
@@ -80,12 +87,12 @@ const RegisterPage = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="mail">Email</label>
             <input
               type="email"
-              id="email"
-              name="email"
-              value={formData.email}
+              id="mail"
+              name="mail"
+              value={formData.mail}
               onChange={handleChange}
               required
             />
@@ -160,9 +167,10 @@ const RegisterPage = () => {
           </button>
         </form>
         <div className="login-link">
-          Déjà un compte ? <Link to="/login">Se connecter</Link>
+          Déjà un compte ? <Link to="/">Se connecter</Link>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

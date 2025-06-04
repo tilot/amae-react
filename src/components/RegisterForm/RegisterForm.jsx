@@ -59,7 +59,14 @@ function RegisterForm() {
     setSuccess('');
     if (!validateForm()) return;
     setLoading(true);
-    const dataToSend = { ...formData };
+    const dataToSend = { 
+      ...formData,
+      profil_pictures: null,
+      birthdates: null,
+      hobbies: null,
+      Id_Calendrier: 1,
+      Id_CSP: 1
+    };
     delete dataToSend.confirmPassword;
     try {
       const res = await fetch('http://localhost:3001/auth/register', {

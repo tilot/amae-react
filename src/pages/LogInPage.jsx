@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { authService } from '../services/api';
 import './LoginPage.css';
-
+import Footer from '../components/Footer/Footer_Gros';
 const LoginPage = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: '',
+    mail: '',
     password: ''
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,8 +29,13 @@ const LoginPage = () => {
 
     try {
       await authService.login(formData);
-      navigate('/'); // Redirection vers la page d'accueil après connexion
-    } catch (err) {
+      setSuccess('Connexion réussie !');
+      setShowPopup(true);
+      setTimeout(() => {
+        setShowPopup(false);
+        navigate('/');
+      }, 1500); // Redirection après 1,5s
+    } catch {
       setError('Email ou mot de passe incorrect');
     } finally {
       setLoading(false);
@@ -40,14 +47,15 @@ const LoginPage = () => {
       <div className="login-box">
         <h1>Connexion</h1>
         {error && <div className="error-message">{error}</div>}
+        {success && <div className="success-message">{success}</div>}
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="mail">Email</label>
             <input
               type="email"
-              id="email"
-              name="email"
-              value={formData.email}
+              id="mail"
+              name="mail"
+              value={formData.mail}
               onChange={handleChange}
               required
             />
@@ -71,7 +79,17 @@ const LoginPage = () => {
           Pas encore de compte ? <Link to="/register">S'inscrire</Link>
         </div>
       </div>
+      <Footer />
+      {showPopup && (
+        <div className="popup-overlay">
+          <div className="popup-content">
+            <h3>Connexion réussie !</h3>
+            <p>Vous allez être redirigé...</p>
+          </div>
+        </div>
+      )}
     </div>
+    
   );
 };
 
