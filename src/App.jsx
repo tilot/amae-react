@@ -5,7 +5,7 @@ import LoginButton from './components/LoginButton/LoginButton.jsx'
 import LoginForm from './components/LoginForm/LoginForm'
 import RegisterForm from './components/RegisterForm/RegisterForm'
 import HomePage from './components/HomePage/HomePage'
-import {Footer_Gros} from './components/Footer/Footer_Gros.jsx'
+import Footer_Gros from './components/Footer/Footer_Gros.jsx'
 import './App.css'
 
 function App() {

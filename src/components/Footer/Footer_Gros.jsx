@@ -1,5 +1,5 @@
 import React from 'react';
-import './Footer-Gros.css';
+import './Footer_Gros.css';
 import logoAmae from '../../assets/images/logo-amae.png';
 
 export default function Footer_Gros() {
