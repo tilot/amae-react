@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { smartDealService } from '../services/api';
+import { smartDealService } from '../../services/api';
 import './SmartDealListPage.css';
 
 const SmartDealListPage = () => {

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { activityService } from '../services/api';
+import { activityService } from '../../services/api';
 import { Link } from 'react-router-dom';
 import './ActiviteListCategorie.css';
 
-const ActiviteInterieurPage = () => {
+const ActiviteExterieurPage = () => {
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -11,11 +11,11 @@ const ActiviteInterieurPage = () => {
   useEffect(() => {
     const fetchActivities = async () => {
       try {
-        const data = await activityService.getInsideActivities();
+        const data = await activityService.getOutsideActivities();
         setActivities(data);
         setLoading(false);
       } catch {
-        setError(`Erreur lors du chargement des activités d'intérieur`);
+        setError('Erreur lors du chargement des activités d\'extérieur');
         setLoading(false);
       }
     };
@@ -26,7 +26,7 @@ const ActiviteInterieurPage = () => {
     <div className="activite-categorie-container">
       <div className="activite-categorie-header">
         <span className="menu-icon"><i className="fas fa-bars"></i></span>
-        <h2>Activités Intérieur</h2>
+        <h2>Activités Extérieur</h2>
         <span className="activite-categorie-count">{activities.length} items</span>
       </div>
       {loading && <div className="loading">Chargement...</div>}
@@ -50,4 +50,4 @@ const ActiviteInterieurPage = () => {
   );
 };
 
-export default ActiviteInterieurPage; 
+export default ActiviteExterieurPage; 

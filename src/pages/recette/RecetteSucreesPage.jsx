@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { recipeService } from '../services/api';
+import { recipeService } from '../../services/api';
 import { Link } from 'react-router-dom';
 import './RecetteListCategorie.css';
 

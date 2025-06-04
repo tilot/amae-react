@@ -3,18 +3,18 @@ import { createBrowserRouter } from "react-router-dom";
 import ErrorPage from "../pages/404";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
-import RecetteVitrinePage from "../pages/RecetteVitrinePage";
-import RecetteSaleesPage from "../pages/RecetteSaleesPage";
-import RecetteSucreesPage from "../pages/RecetteSucreesPage";
-import RecetteDetailPage from "../pages/RecetteDetailPage";
-import ActiviteVitrinePage from "../pages/ActiviteVitrinePage";
-import ActiviteInterieurPage from "../pages/ActiviteInterieurPage";
-import ActiviteExterieurPage from "../pages/ActiviteExterieurPage";
-import ActiviteDetailPage from "../pages/ActiviteDetailPage";
-import MoodboardListPage from "../pages/MoodboardListPage";
-import MoodboardDetailPage from "../pages/MoodboardDetailPage";
-import SmartDealListPage from "../pages/SmartDealListPage";
-import SmartDealDetailPage from "../pages/SmartDealDetailPage";
+import RecetteVitrinePage from "../pages/recette/RecetteVitrinePage";
+import RecetteSaleesPage from "../pages/recette/RecetteSaleesPage";
+import RecetteSucreesPage from "../pages/recette/RecetteSucreesPage";
+import RecetteDetailPage from "../pages/recette/RecetteDetailPage";
+import ActiviteVitrinePage from "../pages/activite/ActiviteVitrinePage";
+import ActiviteInterieurPage from "../pages/activite/ActiviteInterieurPage";
+import ActiviteExterieurPage from "../pages/activite/ActiviteExterieurPage";
+import ActiviteDetailPage from "../pages/activite/ActiviteDetailPage";
+// import MoodboardListPage from "../pages/moodboard/MoodboardListPage";
+// import MoodboardDetailPage from "../pages/moodboard/MoodboardDetailPage";
+import SmartDealListPage from "../pages/smartDeal/SmartDealListPage";
+import SmartDealDetailPage from "../pages/smartDeal/SmartDealDetailPage";
 // import HomePage from "../pages/HomePage";
 // import { RecipePage } from "../pages/RecipePage";
 
@@ -70,15 +70,15 @@ const router = createBrowserRouter([
     element: <ActiviteDetailPage />, 
     errorElement: <ErrorPage /> 
   },
-  {
-    path: "/moodboard",
-    element: <MoodboardListPage />,
-    errorElement: <ErrorPage />
-  },
-  {path: "/moodboard/:id",
-    element: <MoodboardDetailPage />,
-    errorElement: <ErrorPage />
-  },
+  // {
+  //   path: "/moodboard",
+  //   element: <MoodboardListPage />,
+  //   errorElement: <ErrorPage />
+  // },
+  // {path: "/moodboard/:id",
+  //   element: <MoodboardDetailPage />,
+  //   errorElement: <ErrorPage />
+  // },
   {path: "/smart_Deal",
     element: <SmartDealListPage />,
     errorElement: <ErrorPage />

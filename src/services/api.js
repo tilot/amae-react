@@ -157,63 +157,63 @@ export const activityService = {
   }
 };
 
-// Service pour les moodboards
-export const moodboardService = {
-  // Récupérer tous les moodboards
-  getAllMoodboards: async () => {
-    try {
-      const response = await api.get('/moodboards');
-      return response.data;
-    } catch (error) {
-      console.error('Erreur lors de la récupération des moodboards:', error);
-      throw error;
-    }
-  },
+// // Service pour les moodboards
+// export const moodboardService = {
+//   // Récupérer tous les moodboards
+//   getAllMoodboards: async () => {
+//     try {
+//       const response = await api.get('/moodboards');
+//       return response.data;
+//     } catch (error) {
+//       console.error('Erreur lors de la récupération des moodboards:', error);
+//       throw error;
+//     }
+//   },
 
-  // Récupérer un moodboard par son ID
-  getMoodboardById: async (id) => {
-    try {
-      const response = await api.get(`/moodboards/${id}`);
-      return response.data;
-    } catch (error) {
-      console.error('Erreur lors de la récupération du moodboard:', error);
-      throw error;
-    }
-  },
+//   // Récupérer un moodboard par son ID
+//   getMoodboardById: async (id) => {
+//     try {
+//       const response = await api.get(`/moodboards/${id}`);
+//       return response.data;
+//     } catch (error) {
+//       console.error('Erreur lors de la récupération du moodboard:', error);
+//       throw error;
+//     }
+//   },
 
-  // Créer un nouveau moodboard
-  createMoodboard: async (moodboardData) => {
-    try {
-      const response = await api.post('/moodboards', moodboardData);
-      return response.data;
-    } catch (error) {
-      console.error('Erreur lors de la création du moodboard:', error);
-      throw error;
-    }
-  },
+//   // Créer un nouveau moodboard
+//   createMoodboard: async (moodboardData) => {
+//     try {
+//       const response = await api.post('/moodboards', moodboardData);
+//       return response.data;
+//     } catch (error) {
+//       console.error('Erreur lors de la création du moodboard:', error);
+//       throw error;
+//     }
+//   },
 
-  // Mettre à jour un moodboard
-  updateMoodboard: async (id, moodboardData) => {
-    try {
-      const response = await api.put(`/moodboards/${id}`, moodboardData);
-      return response.data;
-    } catch (error) {
-      console.error('Erreur lors de la mise à jour du moodboard:', error);
-      throw error;
-    }
-  },
+//   // Mettre à jour un moodboard
+//   updateMoodboard: async (id, moodboardData) => {
+//     try {
+//       const response = await api.put(`/moodboards/${id}`, moodboardData);
+//       return response.data;
+//     } catch (error) {
+//       console.error('Erreur lors de la mise à jour du moodboard:', error);
+//       throw error;
+//     }
+//   },
 
-  // Supprimer un moodboard
-  deleteMoodboard: async (id) => {
-    try {
-      const response = await api.delete(`/moodboards/${id}`);
-      return response.data;
-    } catch (error) {
-      console.error('Erreur lors de la suppression du moodboard:', error);
-      throw error;
-    }
-  }
-};
+//   // Supprimer un moodboard
+//   deleteMoodboard: async (id) => {
+//     try {
+//       const response = await api.delete(`/moodboards/${id}`);
+//       return response.data;
+//     } catch (error) {
+//       console.error('Erreur lors de la suppression du moodboard:', error);
+//       throw error;
+//     }
+//   }
+// };
 
 // Service pour les smart deals
 export const smartDealService = {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import ActiviteInfo from '../components/Activites/ActiviteDetail/ActiviteInfo';
+import ActiviteInfo from '../../components/Activites/ActiviteDetail/ActiviteInfo';
 
 const ActiviteDetailPage = () => {
     const { id } = useParams();
