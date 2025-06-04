@@ -1,8 +1,12 @@
 /* Conteneur principal de la vitrine des recettes */
 .recette-vitrine {
-  padding: 20px;
-  max-width: 1200px;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 430px; /* Largeur iPhone 16 */
   margin: 0 auto;
+  padding: 1rem;
+  position: relative;
+  background: #fafafd;
 }
 
 /* Titre principal */
@@ -15,68 +19,70 @@
 
 /* Bloc des catégories (Salé/Sucré) */
 .recette-categories {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 2rem 0;
 }
 
 /* Carte de catégorie */
 .category-card {
-  flex: 1;
   text-decoration: none;
-  color: inherit;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(161, 138, 203, 0.10);
+  transition: transform 0.2s;
+}
+
+.category-card:hover {
+  transform: translateY(-4px) scale(1.01);
 }
 
 /* Image de la catégorie */
 .category-image {
   position: relative;
-  width: 100%;
-  height: 300px;
-  background-color: #e5e5e5;
+  height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
-  overflow: hidden;
 }
 
-/* Image de fond pour la catégorie Salé */
-.sale-image {
-  background-image: url('/images/sale-placeholder.jpg');
-  background-size: cover;
-  background-position: center;
-}
-
-/* Image de fond pour la catégorie Sucré */
-.sucre-image {
-  background-image: url('/images/sucre-placeholder.jpg');
-  background-size: cover;
-  background-position: center;
+.category-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Texte sur la catégorie */
 .category-text {
-  font-size: 2rem;
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #7c5fa3;
 }
 
 /* Icônes de navigation */
 .navigation-icons {
   display: flex;
   justify-content: space-around;
-  align-items: center;
   padding: 1rem 0;
-  margin-bottom: 2rem;
-  border-top: 1px solid #e5e5e5;
-  border-bottom: 1px solid #e5e5e5;
+  background: white;
+  border-radius: 28px;
+  margin: 2rem 0;
+  box-shadow: 0 4px 16px rgba(161, 138, 203, 0.10);
 }
 
 .nav-icon {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 8px;
+  padding: 0.5rem;
 }
 
 .nav-icon img {
@@ -86,17 +92,73 @@
 
 /* Bannière publicitaire */
 .pub-banner {
-  width: 100%;
-  height: 100px;
-  background-color: #e5e5e5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 2rem;
-  border-radius: 8px;
+  background: #e6e0f8;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 28px;
+  color: #7c5fa3;
+  font-weight: 600;
 }
 
-.pub-banner p {
-  font-size: 1.5rem;
-  color: #666;
+/* Styles hérités de amae-bg et amae-title */
+.amae-bg {
+  background: #fafafd;
+}
+
+.amae-title {
+  text-align: center;
+  color: #a18acb;
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  letter-spacing: 1px;
+}
+
+.amae-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.amae-tab {
+  background: #e6e0f8;
+  color: #7c5fa3;
+  border: none;
+  border-radius: 18px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1.05rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.amae-tab.active {
+  background: #cbe3ee;
+  color: #5c4d6d;
+}
+
+/* Media queries pour le responsive */
+@media (max-width: 430px) {
+  .recette-vitrine {
+    padding: 0.5rem;
+  }
+
+  .category-image {
+    height: 160px;
+  }
+
+  .amae-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .amae-tabs {
+    gap: 0.5rem;
+  }
+
+  .amae-tab {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
 } 

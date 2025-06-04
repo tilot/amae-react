@@ -10,6 +10,7 @@ import './App.css'
 
 function App() {
   return (
+    <>
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -17,8 +18,10 @@ function App() {
         <Route path="/register" element={<RegisterForm />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-      <Footer-Gros />
+      
     </Router>
+    <Footer_Gros />
+    </>
   )
 }
 

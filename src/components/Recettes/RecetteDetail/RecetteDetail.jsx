@@ -1,86 +1,98 @@
 // Composant principal pour l'affichage des détails des recettes d'une catégorie
-import React from 'react';
-// import { useParams } from 'react-router-dom'; // À décommenter si besoin de filtrer par catégorie
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { recipeService } from '../../../services/api';
 import './RecetteDetail.css';
+import recette_image from '../../../assets/images/recette_image.jpg';
 
 const RecetteDetail = () => {
-  // Pour filtrer selon la catégorie, utiliser :
-  // const { category } = useParams();
+  const { id } = useParams();
+  const [recipe, setRecipe] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Données temporaires pour les recettes (à remplacer par un fetch API plus tard)
-  const recettes = [
-    {
-      id: 1,
-      name: "Nom de recette",
-      prepTime: "30 min",
-      image: "/images/recette-placeholder.jpg"
-    },
-    {
-      id: 2,
-      name: "Nom de recette",
-      prepTime: "45 min",
-      image: "/images/recette-placeholder.jpg"
-    },
-    {
-      id: 3,
-      name: "Nom de recette",
-      prepTime: "25 min",
-      image: "/images/recette-placeholder.jpg"
-    },
-    {
-      id: 4,
-      name: "Nom de recette",
-      prepTime: "60 min",
-      image: "/images/recette-placeholder.jpg"
-    }
-  ];
+  useEffect(() => {
+    const fetchRecipe = async () => {
+      try {
+        const data = await recipeService.getRecipeById(id);
+        setRecipe(data);
+        setLoading(false);
+      } catch (error) {
+        setError('Erreur lors du chargement de la recette');
+        setLoading(false);
+      }
+    };
+    fetchRecipe();
+  }, [id]);
+
+  if (loading) {
+    return <div className="loading">Chargement de la recette...</div>;
+  }
+  if (error) {
+    return <div className="error">{error}</div>;
+  }
+  if (!recipe) {
+    return <div className="error">Recette non trouvée</div>;
+  }
 
   return (
-    <div className="recette-detail">
-      {/* Titre principal */}
-      <h1 className="recette-title">RECETTES</h1>
-
-      {/* Liste des recettes sous forme de cartes */}
-      <div className="recettes-list">
-        {recettes.map(recette => (
-          <div key={recette.id} className="recette-card">
-            {/* Image de la recette */}
-            <div className="recette-image">
-              <img src={recette.image} alt={recette.name} />
-            </div>
-            {/* Informations sur la recette */}
-            <div className="recette-info">
-              <h3>{recette.name}</h3>
-              <p>Durée de préparation: {recette.prepTime}</p>
-              <button className="add-to-cart">ajouter à mes courses</button>
-            </div>
-          </div>
-        ))}
+    <div className="recette-detail amae-bg">
+      <div className="recipe-header">
+        <div className="recipe-image">
+          <img src={recette_image} alt={recipe.title} />
+        </div>
+        <h1 className="recipe-title">{recipe.name}</h1>
+        <div className="recipe-meta">
+          <span className="recipe-time">
+            <i className="fas fa-clock"></i> {recipe.preparation_time}
+          </span>
+          {/* <span className="recipe-difficulty">
+            <i className="fas fa-signal"></i> {recipe.difficulty}
+          </span> */}
+          {/* <span className="recipe-servings">
+            <i className="fas fa-users"></i> {recipe.servings} pers.
+          </span> */}
+        </div>
+      </div>
+      <div className='receipe-name'>
+        <h1>{recipe.name}</h1>
       </div>
 
-      {/* Icônes de navigation en bas de page */}
-      <div className="navigation-icons">
-        <button className="nav-icon">
-          <img src="/icons/calendar.svg" alt="Calendrier" />
-        </button>
-        <button className="nav-icon">
-          <img src="/icons/chef.svg" alt="Chef" />
-        </button>
-        <button className="nav-icon">
-          <img src="/icons/utensils.svg" alt="Ustensiles" />
-        </button>
-        <button className="nav-icon">
-          <img src="/icons/leaf.svg" alt="Bio" />
-        </button>
-        <button className="nav-icon">
-          <img src="/icons/menu.svg" alt="Menu" />
-        </button>
-      </div>
+      {/* <div className="recipe-content">
+        <section className="recipe-section">
+          <h2>Description</h2>
+          <p>{recipe.description}</p>
+        </section>
 
-      {/* Bannière publicitaire en bas de page */}
-      <div className="pub-banner">
-        <p>PUB</p>
-      </div>
+        <section className="recipe-section">
+          <p>
+            {recipe.ingredients}
+          </p>
+        </section>
+
+        <section className="recipe-section">
+          <h2>Préparation</h2>
+          <ol className="steps-list">
+            {recipe.steps.map((step, index) => (
+              <li key={index}>
+                <span className="step-number">{index + 1}</span>
+                <p>{step}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        {recipe.tips && (
+          <section className="recipe-section">
+            <h2>Astuces</h2>
+            <ul className="tips-list">
+              {recipe.tips.map((tip, index) => (
+                <li key={index}>{tip}</li>
+              ))}
+            </ul>
+          </section>
+        )}
+      </div> */}
     </div>
   );
 };

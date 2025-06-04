@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { recipeService } from '../../services/api';
 import { Link } from 'react-router-dom';
 import './RecetteListCategorie.css';
+import recette_image from '../../assets/images/recette_image.jpg';
 
 const RecetteSucreesPage = () => {
   const [recipes, setRecipes] = useState([]);
@@ -63,7 +64,7 @@ const RecetteSucreesPage = () => {
       <div className="recette-categorie-list">
         {filtered.map(recipe => (
           <div className="recette-categorie-item" key={recipe.Id_Recette}>
-            <img src={recipe.picture || '/default-recipe.jpg'} alt={recipe.name} className="recette-categorie-img" />
+            <img src={recette_image} alt={recipe.name} className="recette-categorie-img" />
             <div className="recette-categorie-info">
               <h3>{recipe.name}</h3>
               <div className="recette-categorie-meta">

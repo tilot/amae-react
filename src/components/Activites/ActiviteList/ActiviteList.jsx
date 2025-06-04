@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { activityService } from '../../../services/api';
+import SearchBar from '../../Common/SearchBar/SearchBar';
 import './ActiviteList.css';
+import activite_image from '../../../assets/images/activite_image.webp';
 
 const ActiviteList = () => {
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [filter, setFilter] = useState('all'); // 'all', 'inside', 'outside'
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const fetchActivities = async () => {
@@ -24,9 +27,12 @@ const ActiviteList = () => {
   }, []);
 
   const filteredActivities = activities.filter((activity) => {
-    if (filter === 'inside') return activity.Id_Inside_Outside === 1;
-    if (filter === 'outside') return activity.Id_Inside_Outside === 2;
-    return true;
+    const matchesCategory = filter === 'all' || 
+      (filter === 'inside' && activity.Id_Inside_Outside === 1) ||
+      (filter === 'outside' && activity.Id_Inside_Outside === 2);
+    const matchesSearch = activity.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         activity.description.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
   });
 
   if (loading) {
@@ -39,6 +45,10 @@ const ActiviteList = () => {
   return (
     <div className="activite-list amae-bg">
       <h2 className="amae-title">Activités</h2>
+      <SearchBar 
+        onSearch={setSearchQuery}
+        placeholder="Rechercher une activité..."
+      />
       <div className="amae-tabs">
         <button className={filter === 'all' ? 'amae-tab active' : 'amae-tab'} onClick={() => setFilter('all')}>Toutes</button>
         <button className={filter === 'inside' ? 'amae-tab active' : 'amae-tab'} onClick={() => setFilter('inside')}>Intérieur</button>
@@ -48,7 +58,7 @@ const ActiviteList = () => {
         {filteredActivities.map((activity) => (
           <div className="activity-card amae-card" key={activity.id}>
             <div className="activity-image">
-              <img src={activity.image_url || '/default-activity.jpg'} alt={activity.title} />
+              <img src={activite_image} alt={activity.title} />
             </div>
             <div className="activity-info">
               <h3>{activity.title}</h3>

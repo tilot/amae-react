@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { activityService } from '../../services/api';
 import { Link } from 'react-router-dom';
 import './ActiviteListCategorie.css';
+import Footer_Fin from '../../components/Footer/Footer_Fin';
+import activite_image from '../../assets/images/activite_image.webp';
 
 const ActiviteInterieurPage = () => {
   const [activities, setActivities] = useState([]);
@@ -35,7 +37,7 @@ const ActiviteInterieurPage = () => {
       <div className="activite-categorie-list">
         {activities.map(activity => (
           <div className="activite-categorie-item" key={activity.Id_Activité}>
-            <img src={activity.picture || '/default-activity.jpg'} alt={activity.name} className="activite-categorie-img" />
+            <img src={activite_image} alt={activity.name} className="activite-categorie-img" />
             <div className="activite-categorie-info">
               <h3>{activity.name}</h3>
               <div className="activite-categorie-meta">
@@ -47,8 +49,9 @@ const ActiviteInterieurPage = () => {
           </div>
         ))}
       </div>
+      <Footer_Fin />
     </div>
-    <Footer_Fin />
+    
     </>
   );
 };
