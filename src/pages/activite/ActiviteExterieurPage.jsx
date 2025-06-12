@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { activityService } from '../../services/api';
 import { Link } from 'react-router-dom';
+import SearchBar from '../../components/Common/SearchBar/SearchBar';
 import './ActiviteListCategorie.css';
 import Footer_Fin from '../../components/Footer/Footer_Fin';
 import activite_image from '../../assets/images/activite_image.webp';
@@ -9,6 +10,7 @@ const ActiviteExterieurPage = () => {
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const fetchActivities = async () => {
@@ -24,20 +26,29 @@ const ActiviteExterieurPage = () => {
     fetchActivities();
   }, []);
 
+  const filteredActivities = activities.filter(activity => 
+    activity.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    activity.description?.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <>
     <div className="activite-categorie-container">
       <div className="activite-categorie-header">
         <span className="menu-icon"><i className="fas fa-bars"></i></span>
         <h2>Activités Extérieur</h2>
-        <span className="activite-categorie-count">{activities.length} items</span>
+        <span className="activite-categorie-count">{filteredActivities.length} items</span>
       </div>
+      <SearchBar 
+        onSearch={setSearchQuery}
+        placeholder="Rechercher une activité..."
+      />
       {loading && <div className="loading">Chargement...</div>}
       {error && <div className="error">{error}</div>}
       <div className="activite-categorie-list">
-        {activities.map(activity => (
+        {filteredActivities.map(activity => (
           <div className="activite-categorie-item" key={activity.Id_Activité}>
-            <img src={ activite_image} alt={activity.name} className="activite-categorie-img" />
+            <img src={activite_image} alt={activity.name} className="activite-categorie-img" />
             <div className="activite-categorie-info">
               <h3>{activity.name}</h3>
               <div className="activite-categorie-meta">
@@ -48,10 +59,9 @@ const ActiviteExterieurPage = () => {
             </div>
           </div>
         ))}
-      </div> 
-      <Footer_Fin/>
+      </div>
+      <Footer_Fin />
     </div>
-   
     </>
   );
 };

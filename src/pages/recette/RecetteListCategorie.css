@@ -34,10 +34,28 @@
   font-weight: 500;
 }
 
+.recette-categorie-tools {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+  padding: 0 0.5rem;
+}
+
+.recette-categorie-sort {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #e3e3e3;
+  font-size: 1rem;
+  background: #f8f8f8;
+  width: 100%;
+}
+
 .recette-categorie-list {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
+  padding: 0 0.5rem;
 }
 .recette-categorie-item {
   display: flex;
@@ -112,24 +130,10 @@
     width: 48px;
     height: 48px;
   }
-}
-
-.recette-categorie-tools {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1.2rem;
-}
-.recette-categorie-search {
-  flex: 1;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  border: 1px solid #e3e3e3;
-  font-size: 1rem;
-}
-.recette-categorie-sort {
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  border: 1px solid #e3e3e3;
-  font-size: 1rem;
-  background: #f8f8f8;
+  .recette-categorie-tools {
+    padding: 0 1rem;
+  }
+  .recette-categorie-list {
+    padding: 0 1rem;
+  }
 } 

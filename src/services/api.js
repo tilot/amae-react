@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3001';
+const API_URL = 'http://localhost:3002';
 
 // Configuration d'axios avec l'URL de base
 const api = axios.create({
@@ -292,6 +292,9 @@ export const authService = {
       const response = await api.post('/auth/login', credentials);
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
+      }
+      if (response.data.user) {
+        localStorage.setItem('user', JSON.stringify(response.data.user));
       }
       return response.data;
     } catch (error) {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { recipeService } from '../../services/api';
 import { Link } from 'react-router-dom';
+import SearchBar from '../../components/Common/SearchBar/SearchBar';
 import './RecetteListCategorie.css';
 import recette_image from '../../assets/images/recette_image.jpg';
 
@@ -9,7 +10,7 @@ const RecetteSaleesPage = () => {
   const [filtered, setFiltered] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [search, setSearch] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
   const [sort, setSort] = useState('');
 
   useEffect(() => {
@@ -29,14 +30,14 @@ const RecetteSaleesPage = () => {
   }, []);
 
   useEffect(() => {
-    let result = recipes.filter(r => r.name.toLowerCase().includes(search.toLowerCase()));
+    let result = recipes.filter(r => r.name.toLowerCase().includes(searchQuery.toLowerCase()));
     if (sort === 'name') {
       result = result.sort((a, b) => a.name.localeCompare(b.name));
     } else if (sort === 'time') {
       result = result.sort((a, b) => a.preparation_time - b.preparation_time);
     }
     setFiltered([...result]);
-  }, [search, sort, recipes]);
+  }, [searchQuery, sort, recipes]);
 
   return (
     <div className="recette-categorie-container">
@@ -46,12 +47,9 @@ const RecetteSaleesPage = () => {
         <span className="recette-categorie-count">{filtered.length} items</span>
       </div>
       <div className="recette-categorie-tools">
-        <input
-          type="text"
-          placeholder="Rechercher..."
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-          className="recette-categorie-search"
+        <SearchBar 
+          onSearch={setSearchQuery}
+          placeholder="Rechercher une recette..."
         />
         <select value={sort} onChange={e => setSort(e.target.value)} className="recette-categorie-sort">
           <option value="">Trier par</option>

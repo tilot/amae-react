@@ -3,6 +3,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import { authService } from '../services/api';
 import './RegisterPage.css';
 import Footer from '../components/Footer/Footer_Gros';
+import FormInput from '../components/Common/Form/FormInput';
+import FormSelect from '../components/Common/Form/FormSelect';
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -49,7 +51,7 @@ const RegisterPage = () => {
       userData.Id_CSP = 1;
       await authService.register(userData);
       setSuccess('Inscription réussie ! Redirection vers la connexion...');
-      setTimeout(() => navigate('/'), 1500); // Redirection après 1,5s
+      setTimeout(() => navigate('/'), 1500);
     } catch {
       setError('Erreur lors de l\'inscription. Veuillez réessayer.');
     } finally {
@@ -64,104 +66,95 @@ const RegisterPage = () => {
         {error && <div className="error-message">{error}</div>}
         {success && <div className="success-message">{success}</div>}
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="name">Nom</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="firstname">Prénom</label>
-            <input
-              type="text"
-              id="firstname"
-              name="firstname"
-              value={formData.firstname}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="mail">Email</label>
-            <input
-              type="email"
-              id="mail"
-              name="mail"
-              value={formData.mail}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Mot de passe</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="confirmPassword">Confirmer le mot de passe</label>
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="phone_numbers">Téléphone</label>
-            <input
-              type="tel"
-              id="phone_numbers"
-              name="phone_numbers"
-              value={formData.phone_numbers}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="adress">Adresse</label>
-            <input
-              type="text"
-              id="adress"
-              name="adress"
-              value={formData.adress}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="birthdates">Date de naissance</label>
-            <input
-              type="date"
-              id="birthdates"
-              name="birthdates"
-              value={formData.birthdates}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="hobbies">Centres d'intérêt</label>
-            <textarea
-              id="hobbies"
-              name="hobbies"
-              value={formData.hobbies}
-              onChange={handleChange}
-              rows="3"
-            />
-          </div>
+          <FormInput
+            type="text"
+            name="name"
+            label="Nom"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            error={error}
+            icon="fa-user"
+          />
+          <FormInput
+            type="text"
+            name="firstname"
+            label="Prénom"
+            value={formData.firstname}
+            onChange={handleChange}
+            required
+            error={error}
+            icon="fa-user"
+          />
+          <FormInput
+            type="email"
+            name="mail"
+            label="Email"
+            value={formData.mail}
+            onChange={handleChange}
+            required
+            error={error}
+            icon="fa-envelope"
+          />
+          <FormInput
+            type="password"
+            name="password"
+            label="Mot de passe"
+            value={formData.password}
+            onChange={handleChange}
+            required
+            error={error}
+            icon="fa-lock"
+          />
+          <FormInput
+            type="password"
+            name="confirmPassword"
+            label="Confirmer le mot de passe"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            required
+            error={error}
+            icon="fa-lock"
+          />
+          <FormInput
+            type="tel"
+            name="phone_numbers"
+            label="Téléphone"
+            value={formData.phone_numbers}
+            onChange={handleChange}
+            required
+            error={error}
+            icon="fa-phone"
+          />
+          <FormInput
+            type="text"
+            name="adress"
+            label="Adresse"
+            value={formData.adress}
+            onChange={handleChange}
+            required
+            error={error}
+            icon="fa-home"
+          />
+          <FormInput
+            type="date"
+            name="birthdates"
+            label="Date de naissance"
+            value={formData.birthdates}
+            onChange={handleChange}
+            required
+            error={error}
+            icon="fa-calendar"
+          />
+          <FormInput
+            type="textarea"
+            name="hobbies"
+            label="Centres d'intérêt"
+            value={formData.hobbies}
+            onChange={handleChange}
+            error={error}
+            icon="fa-heart"
+          />
           <button type="submit" className="register-button" disabled={loading}>
             {loading ? 'Inscription en cours...' : 'S\'inscrire'}
           </button>

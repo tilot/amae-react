@@ -3,6 +3,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import { authService } from '../services/api';
 import './LoginPage.css';
 import Footer from '../components/Footer/Footer_Gros';
+import FormInput from '../components/Common/Form/FormInput';
+
 const LoginPage = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -28,15 +30,22 @@ const LoginPage = () => {
     setLoading(true);
 
     try {
-      await authService.login(formData);
-      setSuccess('Connexion réussie !');
-      setShowPopup(true);
-      setTimeout(() => {
-        setShowPopup(false);
-        navigate('/');
-      }, 1500); // Redirection après 1,5s
-    } catch {
-      setError('Email ou mot de passe incorrect');
+      const response = await authService.login(formData);
+      
+      if (response.token) {
+        // Le token est déjà stocké dans le localStorage par le service d'authentification
+        setSuccess('Connexion réussie !');
+        setShowPopup(true);
+        setTimeout(() => {
+          setShowPopup(false);
+          navigate('/calendrier');
+        }, 1500);
+      } else {
+        setError('Erreur lors de la connexion : token manquant');
+      }
+    } catch (error) {
+      console.error('Erreur de connexion:', error);
+      setError(error.response?.data?.message || 'Email ou mot de passe incorrect');
     } finally {
       setLoading(false);
     }
@@ -49,28 +58,26 @@ const LoginPage = () => {
         {error && <div className="error-message">{error}</div>}
         {success && <div className="success-message">{success}</div>}
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="mail">Email</label>
-            <input
-              type="email"
-              id="mail"
-              name="mail"
-              value={formData.mail}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Mot de passe</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-          </div>
+          <FormInput
+            type="email"
+            name="mail"
+            label="Email"
+            value={formData.mail}
+            onChange={handleChange}
+            required
+            error={error}
+            icon="fa-envelope"
+          />
+          <FormInput
+            type="password"
+            name="password"
+            label="Mot de passe"
+            value={formData.password}
+            onChange={handleChange}
+            required
+            error={error}
+            icon="fa-lock"
+          />
           <button type="submit" className="login-button" disabled={loading}>
             {loading ? 'Connexion en cours...' : 'Se connecter'}
           </button>
@@ -89,7 +96,6 @@ const LoginPage = () => {
         </div>
       )}
     </div>
-    
   );
 };
 

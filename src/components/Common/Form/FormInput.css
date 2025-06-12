@@ -1,0 +1,89 @@
+/* Conteneur principal du champ de saisie */
+.form-input-container {
+  margin-bottom: 1.2rem; /* Espacement entre les champs */
+  width: 100%; /* Prend toute la largeur disponible */
+}
+
+/* Style du label du champ */
+.form-input-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Style de l'astérisque pour les champs obligatoires */
+.required {
+  color: #dc2626; /* Rouge pour indiquer l'obligation */
+  margin-left: 0.2rem;
+}
+
+/* Conteneur pour gérer le positionnement de l'icône */
+.form-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Style de l'icône FontAwesome */
+.form-input-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  font-size: 1.1rem;
+}
+
+/* Style du champ de saisie */
+.form-input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #e3e3e3;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333;
+  background: #fff;
+  transition: all 0.2s; /* Animation douce pour les changements d'état */
+}
+
+/* Ajustement du padding quand une icône est présente */
+.form-input.with-icon {
+  padding-left: 2.8rem;
+}
+
+/* Style du champ lors du focus */
+.form-input:focus {
+  outline: none;
+  border-color: #a18acb; /* Couleur violette de la marque */
+  box-shadow: 0 0 0 2px rgba(161, 138, 203, 0.1); /* Effet de halo subtil */
+}
+
+/* Style du champ en cas d'erreur */
+.form-input.error {
+  border-color: #dc2626;
+}
+
+/* Style du message d'erreur */
+.form-input-error {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  color: #dc2626;
+}
+
+/* Styles responsifs pour les petits écrans */
+@media (max-width: 430px) {
+  .form-input {
+    padding: 0.7rem 0.9rem;
+    font-size: 0.95rem;
+  }
+  
+  .form-input.with-icon {
+    padding-left: 2.5rem;
+  }
+  
+  .form-input-icon {
+    font-size: 1rem;
+  }
+} 

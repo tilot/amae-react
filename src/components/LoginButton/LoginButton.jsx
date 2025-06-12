@@ -12,8 +12,9 @@ const LoginButton = () => {
 
       // Exemple : stocker le token
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('user', JSON.stringify(response.data.user));
       alert('Connexion réussie !');
-
+      window.location.href = '/calendrier';
     } catch (error) {
       console.error('Erreur de connexion :', error);
       alert('Erreur de connexion');

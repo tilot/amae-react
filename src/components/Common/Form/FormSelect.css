@@ -1,0 +1,99 @@
+/* Conteneur principal du menu déroulant */
+.form-select-container {
+  margin-bottom: 1.2rem; /* Espacement entre les champs */
+  width: 100%; /* Prend toute la largeur disponible */
+}
+
+/* Style du label du menu déroulant */
+.form-select-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Conteneur pour gérer le positionnement de l'icône */
+.form-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Style de l'icône FontAwesome */
+.form-select-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  font-size: 1.1rem;
+  pointer-events: none; /* Empêche l'icône d'interférer avec le clic */
+}
+
+/* Style du menu déroulant */
+.form-select {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #e3e3e3;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333;
+  background: #fff;
+  transition: all 0.2s; /* Animation douce pour les changements d'état */
+  appearance: none; /* Supprime le style par défaut du navigateur */
+  cursor: pointer; /* Indique que l'élément est cliquable */
+}
+
+/* Ajustement du padding quand une icône est présente */
+.form-select.with-icon {
+  padding-left: 2.8rem;
+}
+
+/* Style du menu déroulant lors du focus */
+.form-select:focus {
+  outline: none;
+  border-color: #a18acb; /* Couleur violette de la marque */
+  box-shadow: 0 0 0 2px rgba(161, 138, 203, 0.1); /* Effet de halo subtil */
+}
+
+/* Style du menu déroulant en cas d'erreur */
+.form-select.error {
+  border-color: #dc2626;
+}
+
+/* Style du message d'erreur */
+.form-select-error {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  color: #dc2626;
+}
+
+/* Style de la flèche personnalisée du select */
+.form-select-wrapper::after {
+  content: '\f107'; /* Code FontAwesome pour une flèche vers le bas */
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  pointer-events: none; /* Empêche la flèche d'interférer avec le clic */
+}
+
+/* Styles responsifs pour les petits écrans */
+@media (max-width: 430px) {
+  .form-select {
+    padding: 0.7rem 0.9rem;
+    font-size: 0.95rem;
+  }
+  
+  .form-select.with-icon {
+    padding-left: 2.5rem;
+  }
+  
+  .form-select-icon {
+    font-size: 1rem;
+  }
+} 

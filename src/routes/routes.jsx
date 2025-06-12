@@ -17,6 +17,8 @@ import SmartDealListPage from "../pages/smartDeal/SmartDealListPage";
 import SmartDealDetailPage from "../pages/smartDeal/SmartDealDetailPage";
 // import HomePage from "../pages/HomePage";
 // import { RecipePage } from "../pages/RecipePage";
+import CalendarPage from "../pages/CalendarPage";
+import FriendsPage from "../pages/FriendsPage";
 
 // Déclaration du routeur avec les différentes routes accessibles
 const router = createBrowserRouter([
@@ -90,6 +92,16 @@ const router = createBrowserRouter([
   },
   {path: "/smart_Deal/:id",
     element: <SmartDealDetailPage />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: "/calendrier",
+    element: <CalendarPage />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: "/amis",
+    element: <FriendsPage />,
     errorElement: <ErrorPage />
   }
 ]);
