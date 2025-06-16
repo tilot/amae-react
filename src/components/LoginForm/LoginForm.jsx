@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { authService } from '../../services/api';
 import './LoginForm.css';
 import logoAmae from '../../assets/images/logo-amae.png';
 
-function LoginForm() {
+function LoginForm({ onLoginSuccess }) {
   const [formData, setFormData] = useState({ mail: '', password: '' });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -20,48 +22,36 @@ function LoginForm() {
     setLoading(true);
 
     try {
-      const res = await fetch('http://localhost:3001/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-        credentials: 'include'
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
+      const response = await authService.login(formData);
+      
+      if (response.token) {
         setSuccess('Connexion réussie !');
         setShowPopup(true);
         
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
-        
-        // Fermer le popup après 2 secondes
         setTimeout(() => {
           setShowPopup(false);
-          // Redirection vers la page d'accueil ou dashboard
-          window.location.href = '/';
-        }, 2000);
+          onLoginSuccess();
+        }, 1500);
       } else {
-        setError(data.message || 'Identifiants invalides');
+        setError('Erreur lors de la connexion : token manquant');
       }
-    } catch (err) {
-      console.error('Erreur de connexion:', err);
-      setError('Erreur de connexion au serveur');
+    } catch (error) {
+      console.error('Erreur de connexion:', error);
+      setError(error.response?.data?.message || 'Email ou mot de passe incorrect');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="login-container">
+    <div className="login-form-container">
       <img src={logoAmae} alt="Logo AMAE" className="amae-logo" />
       <form onSubmit={handleSubmit} className="login-form">
         <input
           type="email"
           id="mail"
           name="mail"
-          placeholder="Nom d'utilisateur ..."
+          placeholder="Email"
           value={formData.mail}
           onChange={handleChange}
           required
@@ -71,7 +61,7 @@ function LoginForm() {
           type="password"
           id="password"
           name="password"
-          placeholder="Mot de passe ..."
+          placeholder="Mot de passe"
           value={formData.password}
           onChange={handleChange}
           required
@@ -82,10 +72,13 @@ function LoginForm() {
           className="login-btn"
           disabled={loading}
         >
-          {loading ? 'Connexion en cours...' : 'Je m\'inscris'}
+          {loading ? 'Connexion en cours...' : 'Se connecter'}
         </button>
         {error && <p className="login-error">{error}</p>}
         {success && <p className="login-success">{success}</p>}
+        <div className="register-link">
+          Pas encore de compte ? <Link to="/register">S'inscrire</Link>
+        </div>
       </form>
       {showPopup && (
         <div className="popup-overlay">

@@ -3,6 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './RecetteVitrinePage.css';
 import recette_image from '../../assets/images/recette_image.jpg';
+import Footer_Gros from '../../components/Footer/Footer_Gros';
 
 // Cette page sert de point d'entrée pour la vitrine des recettes
 const RecetteVitrinePage = () => {
@@ -21,11 +22,7 @@ const RecetteVitrinePage = () => {
           <span className="recette-vitrine-label">SUCRÉES</span>
         </div>
       </div>
-      {/* <div className="recette-vitrine-footer">
-        <button className="footer-icon"><i className="fas fa-home"></i></button>
-        <button className="footer-icon"><i className="fas fa-utensils"></i></button>
-        <button className="footer-icon"><i className="fas fa-user"></i></button>
-      </div> */}
+      <Footer_Gros/>
     </div>
   );
 };

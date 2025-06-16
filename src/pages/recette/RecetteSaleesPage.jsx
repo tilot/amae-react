@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import SearchBar from '../../components/Common/SearchBar/SearchBar';
 import './RecetteListCategorie.css';
 import recette_image from '../../assets/images/recette_image.jpg';
+import Footer_Fin from '../../components/Footer/Footer_Fin';
 
 const RecetteSaleesPage = () => {
   const [recipes, setRecipes] = useState([]);
@@ -73,6 +74,7 @@ const RecetteSaleesPage = () => {
           </div>
         ))}
       </div>
+      <Footer_Fin/>
     </div>
   );
 };

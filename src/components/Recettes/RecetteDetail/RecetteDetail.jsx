@@ -39,60 +39,36 @@ const RecetteDetail = () => {
     <div className="recette-detail amae-bg">
       <div className="recipe-header">
         <div className="recipe-image">
-          <img src={recette_image} alt={recipe.title} />
+          <img 
+            src={recette_image} 
+            className="recette-detail-img" 
+            alt={recipe.name}
+          />
         </div>
         <h1 className="recipe-title">{recipe.name}</h1>
         <div className="recipe-meta">
           <span className="recipe-time">
-            <i className="fas fa-clock"></i> {recipe.preparation_time}
+            <i className="fas fa-clock"></i> {recipe.preparation_time} minutes
           </span>
-          {/* <span className="recipe-difficulty">
-            <i className="fas fa-signal"></i> {recipe.difficulty}
-          </span> */}
-          {/* <span className="recipe-servings">
-            <i className="fas fa-users"></i> {recipe.servings} pers.
-          </span> */}
+          <span className="recipe-date">
+            <i className="fas fa-calendar"></i> {new Date(recipe.creation_date).toLocaleDateString()}
+          </span>
         </div>
       </div>
-      <div className='receipe-name'>
-        <h1>{recipe.name}</h1>
-      </div>
 
-      {/* <div className="recipe-content">
+      <div className="recipe-content">
         <section className="recipe-section">
-          <h2>Description</h2>
-          <p>{recipe.description}</p>
-        </section>
-
-        <section className="recipe-section">
-          <p>
-            {recipe.ingredients}
-          </p>
-        </section>
-
-        <section className="recipe-section">
-          <h2>Préparation</h2>
-          <ol className="steps-list">
-            {recipe.steps.map((step, index) => (
-              <li key={index}>
-                <span className="step-number">{index + 1}</span>
-                <p>{step}</p>
-              </li>
+          <h2>Ingrédients</h2>
+          <div className="ingredients-list">
+            {recipe.ingredient.split(',').map((ingredient, index) => (
+              <div key={index} className="ingredient-item">
+                <i className="fas fa-check"></i>
+                <span>{ingredient.trim()}</span>
+              </div>
             ))}
-          </ol>
+          </div>
         </section>
-
-        {recipe.tips && (
-          <section className="recipe-section">
-            <h2>Astuces</h2>
-            <ul className="tips-list">
-              {recipe.tips.map((tip, index) => (
-                <li key={index}>{tip}</li>
-              ))}
-            </ul>
-          </section>
-        )}
-      </div> */}
+      </div>
     </div>
   );
 };

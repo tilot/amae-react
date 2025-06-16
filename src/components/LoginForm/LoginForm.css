@@ -50,54 +50,61 @@
   background: #fafafd;
 }
 
+.login-form-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .amae-logo {
-  width: 220px;
-  margin-bottom: 2.5rem;
-  margin-top: 2rem;
+  width: 140px;
+  margin-bottom: 1.5rem;
 }
 
 .login-form {
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 2px 16px rgba(180, 160, 200, 0.10);
-  padding: 2.5rem 2rem 2rem 2rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  min-width: 320px;
-  max-width: 90vw;
+  gap: 0.8rem;
 }
 
 .login-input {
-  background: #e6e0f8;
-  border: none;
-  border-radius: 18px;
-  padding: 1rem 1.2rem;
-  font-size: 1rem;
+  width: 90%;
+  padding: 0.7rem 1rem;
+  border: 1px solid #e3e3e3;
+  border-radius: 12px;
+  font-size: 0.9rem;
   color: #5c4d6d;
-  margin-bottom: 0.5rem;
-  outline: none;
-  transition: box-shadow 0.2s;
+  background: #f8f9fa;
+  transition: all 0.2s;
 }
+
 .login-input:focus {
-  box-shadow: 0 0 0 2px #b9b6e5;
+  outline: none;
+  border-color: #a18acb;
+  box-shadow: 0 0 0 2px rgba(161, 138, 203, 0.1);
 }
 
 .login-btn {
-  background: #cbe3ee;
-  color: #5c4d6d;
+  width: 100%;
+  align-self: center;
+  padding: 0.7rem;
   border: none;
-  border-radius: 18px;
-  padding: 0.9rem 0;
-  font-size: 1.1rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
   font-weight: 600;
+  color: #5c4d6d;
+  background: #cbe3ee;
   cursor: pointer;
-  margin-top: 0.5rem;
   transition: background 0.2s;
+  margin-top: 0.5rem;
 }
+
 .login-btn:hover:not(:disabled) {
   background: #b6d6e6;
 }
+
 .login-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
@@ -106,21 +113,54 @@
 .login-error {
   color: #d9534f;
   text-align: center;
-  margin-top: 0.5rem;
+  margin-top: 0.4rem;
+  padding: 0.4rem;
+  background-color: #f8d7da;
+  border-radius: 8px;
+  font-size: 0.85rem;
 }
+
 .login-success {
   color: #4bb543;
   text-align: center;
-  margin-top: 0.5rem;
+  margin-top: 0.4rem;
+  padding: 0.4rem;
+  background-color: #d4edda;
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 0.8rem;
+  color: #5c4d6d;
+  font-size: 0.9rem;
+}
+
+.register-link a {
+  color: #a18acb;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 0.3rem;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 500px) {
-  .login-form {
-    min-width: 90vw;
-    padding: 1.2rem 0.5rem 1.5rem 0.5rem;
-  }
   .amae-logo {
-    width: 150px;
+    width: 120px;
     margin-bottom: 1.2rem;
+  }
+
+  .login-input {
+    padding: 0.6rem 0.9rem;
+    font-size: 0.85rem;
+  }
+
+  .login-btn {
+    padding: 0.6rem;
+    font-size: 0.9rem;
   }
 }

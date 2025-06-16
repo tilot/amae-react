@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ActiviteVitrinePage.css';
-import Footer_Fin from '../../components/Footer/Footer_Fin';
 import activite_image from '../../assets/images/activite_image.webp';
+import Footer_Gros from '../../components/Footer/Footer_Gros';
 
 const ActiviteVitrinePage = () => {
   const navigate = useNavigate();
@@ -20,12 +20,7 @@ const ActiviteVitrinePage = () => {
           <span className="activite-vitrine-label">EXTÉRIEUR</span>
         </div>
       </div>
-      <div className="activite-vitrine-footer">
-        <button className="footer-icon"><i className="fas fa-home"></i></button>
-        <button className="footer-icon"><i className="fas fa-running"></i></button>
-        <button className="footer-icon"><i className="fas fa-user"></i></button>
-      </div>
-      <Footer_Fin />
+      <Footer_Gros/>
     </div>
   );
 };

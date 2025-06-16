@@ -1,0 +1,11 @@
+.main-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  padding-top: 70px; /* Espace pour la navbar fixe */
+  padding-bottom: 60px; /* Espace pour le footer */
+} 
