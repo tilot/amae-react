@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './RegisterForm.css';
 import logoAmae from '../../assets/images/logo-amae.png';
 
-function RegisterForm() {
+function RegisterForm({ onRegisterSuccess }) {
   const [formData, setFormData] = useState({
     name: '',
     firstname: '',
@@ -76,23 +76,12 @@ function RegisterForm() {
       });
       const data = await res.json();
       if (res.ok) {
-        setSuccess('Compte créé avec succès! Vous pouvez maintenant vous connecter.');
-        setFormData({
-          name: '',
-          firstname: '',
-          children_number: '',
-          situation: '',
-          job: '',
-          children_age: '',
-          children_firstname: '',
-          phone_numbers: '',
-          mail: '',
-          password: '',
-          confirmPassword: '',
-          adress: '',
-          acceptCGU: false,
-          newsletter: false,
-        });
+        setSuccess('Compte créé avec succès! Vous allez être redirigé...');
+        setTimeout(() => {
+          if (onRegisterSuccess) {
+            onRegisterSuccess();
+          }
+        }, 1500);
       } else {
         setError(data.message || 'Erreur lors de l\'inscription');
       }
@@ -125,12 +114,11 @@ function RegisterForm() {
           <option value="autre">Autre</option>
         </select>
         <input type="text" name="job" placeholder="Profession" value={formData.job} onChange={handleChange} className="register-input" />
-        <input type="text" name="children_age" placeholder="Âge enfant(s)" value={formData.children_age} onChange={handleChange} className="register-input" />
-        <input type="text" name="children_firstname" placeholder="Prénom(s) enfant(s)" value={formData.children_firstname} onChange={handleChange} className="register-input" />
+
         <input type="tel" name="phone_numbers" placeholder="Numéro de portable" value={formData.phone_numbers} onChange={handleChange} className="register-input" />
         <input type="email" name="mail" placeholder="Adresse mail" value={formData.mail} onChange={handleChange} className="register-input" required />
         <input type="password" name="password" placeholder="Mot de passe" value={formData.password} onChange={handleChange} className="register-input" required />
-        <input type="password" name="confirmPassword" placeholder="Confirmation du mdp" value={formData.confirmPassword} onChange={handleChange} className="register-input" required />
+        <input type="password" name="confirmPassword" placeholder="Confirmation du mot de passe" value={formData.confirmPassword} onChange={handleChange} className="register-input" required />
         <input type="text" name="adress" placeholder="Adresse postale" value={formData.adress} onChange={handleChange} className="register-input" />
         <div className="register-checkboxes">
           <label className="checkbox-label">

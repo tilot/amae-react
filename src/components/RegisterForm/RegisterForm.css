@@ -18,6 +18,7 @@
   border-radius: 18px;
   box-shadow: 0 2px 16px rgba(180, 160, 200, 0.10);
   padding: 2.5rem 2rem 2rem 2rem;
+  width: 80%;
   display: flex;
   flex-direction: column;
   gap: 1.1rem;
@@ -29,6 +30,7 @@
   background: #e6e0f8;
   border: none;
   border-radius: 18px;
+  width: 80%;
   padding: 1rem 1.2rem;
   font-size: 1rem;
   color: #5c4d6d;
@@ -37,6 +39,7 @@
   transition: box-shadow 0.2s;
 }
 .register-input:focus, .register-form select:focus {
+  width: 80%;
   box-shadow: 0 0 0 2px #b9b6e5;
 }
 
@@ -92,7 +95,7 @@
 
 @media (max-width: 500px) {
   .register-form {
-    min-width: 95vw;
+    mwidth: 80%;
     padding: 1.2rem 0.5rem 1.5rem 0.5rem;
   }
   .amae-logo {
