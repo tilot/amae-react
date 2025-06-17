@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import RecetteDetail from '../../components/Recettes/RecetteDetail/RecetteDetail';
 import Footer_Fin from '../../components/Footer/Footer_Fin';
+import Footer_Pub from '../../components/Footer/Footer_Pub';
 import { recipeService } from '../../services/api';
 import './RecetteDetailPage.css';
 
@@ -34,7 +35,8 @@ const RecetteDetailPage = () => {
   return (
     <div className="recette-detail-page">
       <RecetteDetail recette={recette} />
-      <Footer_Fin />
+      {/* <Footer_Fin/>
+      <Footer_Pub/> */}
     </div>
   );
 };

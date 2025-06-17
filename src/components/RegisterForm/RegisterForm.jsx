@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './RegisterForm.css';
 import logoAmae from '../../assets/images/logo-amae.png';
 

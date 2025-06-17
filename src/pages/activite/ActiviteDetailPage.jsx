@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ActiviteInfo from '../../components/Activites/ActiviteDetail/ActiviteInfo';
 import Footer_Fin from '../../components/Footer/Footer_Fin';
+import Footer_Pub from '../../components/Footer/Footer_Pub';
 import { activityService } from '../../services/api';
 import './ActiviteDetailPage.css';
 
@@ -34,6 +35,7 @@ const ActiviteDetailPage = () => {
         <div className="activite-detail">
             <ActiviteInfo activite={activite} />
             <Footer_Fin />
+            <Footer_Pub />
         </div>
         
         </>

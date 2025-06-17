@@ -351,4 +351,29 @@ export const authService = {
       throw error;
     }
   }
+};
+
+// Service pour les utilisateurs
+export const userService = {
+  // Récupérer un utilisateur par son ID
+  getUserById: async (id) => {
+    try {
+      const response = await api.get(`/users/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error('Erreur lors de la récupération de l\'utilisateur:', error);
+      throw error;
+    }
+  },
+
+  // Mettre à jour un utilisateur
+  updateUser: async (id, userData) => {
+    try {
+      const response = await api.put(`/users/${id}`, userData);
+      return response.data;
+    } catch (error) {
+      console.error('Erreur lors de la mise à jour de l\'utilisateur:', error);
+      throw error;
+    }
+  }
 }; 

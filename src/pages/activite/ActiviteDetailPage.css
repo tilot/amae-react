@@ -46,11 +46,7 @@
 }
 
 .footer-fin {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 16px;
-  z-index: 100;
+  margin-top: 20px;
 }
 
 @media (max-width: 500px) {

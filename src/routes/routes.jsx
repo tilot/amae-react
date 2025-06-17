@@ -1,4 +1,6 @@
 // Définition des routes principales de l'application avec React Router
+
+import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import ErrorPage from "../pages/404";
 import LoginPage from "../pages/LoginPage";

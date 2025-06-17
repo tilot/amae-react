@@ -1,4 +1,5 @@
 /* fichier 404.jsx */
+import React from "react";
 import { useRouteError } from "react-router-dom";
 
 export default function ErrorPage() {

@@ -3,7 +3,6 @@ import { userService } from '../services/api';
 import './MonComptePage.css';
 
 const MonComptePage = () => {
-  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
@@ -20,7 +19,6 @@ const MonComptePage = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        // Récupérer l'ID de l'utilisateur depuis le localStorage ou le contexte
         const userId = localStorage.getItem('userId');
         if (!userId) {
           setError('Utilisateur non connecté');
@@ -29,7 +27,6 @@ const MonComptePage = () => {
         }
 
         const data = await userService.getUserById(userId);
-        setUser(data);
         setFormData({
           name: data.name || '',
           firstname: data.firstname || '',
@@ -40,7 +37,7 @@ const MonComptePage = () => {
           hobbies: data.hobbies || ''
         });
         setLoading(false);
-      } catch (error) {
+      } catch (err) {
         setError('Erreur lors du chargement des données');
         setLoading(false);
       }
@@ -66,7 +63,7 @@ const MonComptePage = () => {
       const userId = localStorage.getItem('userId');
       await userService.updateUser(userId, formData);
       setSuccess('Profil mis à jour avec succès');
-    } catch (error) {
+    } catch (err) {
       setError('Erreur lors de la mise à jour du profil');
     }
   };

@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import { recipeService } from '../../../services/api';
 import './RecetteDetail.css';
 import recette_image from '../../../assets/images/recette_image.jpg';
+import Footer_Fin from '../../Footer/Footer_Fin';
+import Footer_Pub from '../../Footer/Footer_Pub';
 
 const RecetteDetail = () => {
   const { id } = useParams();
@@ -36,7 +38,7 @@ const RecetteDetail = () => {
   }
 
   return (
-    <div className="recette-detail amae-bg">
+    <div className="recette-detail">
       <div className="recipe-header">
         <div className="recipe-image">
           <img 
@@ -69,6 +71,8 @@ const RecetteDetail = () => {
           </div>
         </section>
       </div>
+      <Footer_Fin/>
+      <Footer_Pub/>
     </div>
   );
 };

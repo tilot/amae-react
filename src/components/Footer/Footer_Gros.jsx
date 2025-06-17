@@ -1,6 +1,9 @@
 import React from 'react';
 import './Footer_Gros.css';
 import logoAmae from '../../assets/images/logo-amae.png';
+import cguPdf from '../../assets/pdf/CGU-Amaé.pdf';
+import cgvPdf from '../../assets/pdf/CGV-Amaé.pdf';
+import rgpdPdf from '../../assets/pdf/RGPD-Amaé.pdf';
 
 export default function Footer_Gros() {
   return (
@@ -11,8 +14,9 @@ export default function Footer_Gros() {
       <div className="footer-content">
         <div className="footer-links">
           <a href="#contact">Contact</a>
-          <a href="#cgu">Conditions générales d'utilisation</a>
-          <a href="#cgv">Conditions générales de ventes</a>
+          <a href={cguPdf} target="_blank" rel="noopener noreferrer">Conditions générales d'utilisation</a>
+          <a href={cgvPdf} target="_blank" rel="noopener noreferrer">Conditions générales de ventes</a>
+          <a href={rgpdPdf} target="_blank" rel="noopener noreferrer">Politique de confidentialité</a>
         </div>
         <div className="footer-socials">
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
