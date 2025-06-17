@@ -303,6 +303,17 @@ export const authService = {
     }
   },
 
+  // Vérifier l'unicité de l'email
+  checkEmailUniqueness: async (email) => {
+    try {
+      const response = await api.get(`/auth/check-email/${encodeURIComponent(email)}`);
+      return response.data;
+    } catch (error) {
+      console.error('Erreur lors de la vérification de l\'email:', error);
+      throw error;
+    }
+  },
+
   // Déconnexion
   logout: () => {
     localStorage.removeItem('token');

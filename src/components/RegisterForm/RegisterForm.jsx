@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './RegisterForm.css';
 import logoAmae from '../../assets/images/logo-amae.png';
+import { authService } from '../../services/api';
 
 function RegisterForm({ onRegisterSuccess }) {
   const [formData, setFormData] = useState({
@@ -23,6 +24,7 @@ function RegisterForm({ onRegisterSuccess }) {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
+  const [emailUnique, setEmailUnique] = useState(true);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -30,6 +32,25 @@ function RegisterForm({ onRegisterSuccess }) {
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }));
+
+    // Vérifier l'unicité de l'email quand l'utilisateur tape dans le champ email
+    if (name === 'mail' && value) {
+      setEmailUnique(true);
+      // Délai pour éviter trop de requêtes
+      setTimeout(async () => {
+        try {
+          const result = await authService.checkEmailUniqueness(value);
+          setEmailUnique(result.isUnique);
+          if (!result.isUnique) {
+            setError('Cet email est déjà utilisé');
+          } else {
+            setError('');
+          }
+        } catch (error) {
+          console.error('Erreur lors de la vérification de l\'email:', error);
+        }
+      }, 500);
+    }
   };
 
   const validateForm = () => {
@@ -41,15 +62,27 @@ function RegisterForm({ onRegisterSuccess }) {
       setError('Les mots de passe ne correspondent pas');
       return false;
     }
+    
+    // Validation email avec regex
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.mail)) {
-      setError('Veuillez entrer une adresse email valide');
+      setError('Veuillez entrer une adresse email valide (doit contenir @ et un domaine)');
       return false;
     }
-    if (formData.password.length < 8) {
-      setError('Le mot de passe doit contenir au moins 8 caractères');
+    
+    // Vérification de l'unicité de l'email
+    if (!emailUnique) {
+      setError('Cet email est déjà utilisé');
       return false;
     }
+    
+    // Validation mot de passe avec regex
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/;
+    if (!passwordRegex.test(formData.password)) {
+      setError('Le mot de passe doit contenir au moins 8 caractères, dont 1 minuscule, 1 majuscule et 1 caractère spécial');
+      return false;
+    }
+    
     return true;
   };
 
