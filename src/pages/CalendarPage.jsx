@@ -26,8 +26,7 @@ const CalendarPage = () => {
   return (
     <>
       <Calendar userId={userId} />
-      <Footer_Fin/>
-      <Footer_Pub/>
+
     </>
   );
 };

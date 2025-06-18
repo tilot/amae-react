@@ -24,7 +24,6 @@ function RegisterForm({ onRegisterSuccess }) {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
-  const [emailUnique, setEmailUnique] = useState(true);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -32,25 +31,6 @@ function RegisterForm({ onRegisterSuccess }) {
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }));
-
-    // Vérifier l'unicité de l'email quand l'utilisateur tape dans le champ email
-    if (name === 'mail' && value) {
-      setEmailUnique(true);
-      // Délai pour éviter trop de requêtes
-      setTimeout(async () => {
-        try {
-          const result = await authService.checkEmailUniqueness(value);
-          setEmailUnique(result.isUnique);
-          if (!result.isUnique) {
-            setError('Cet email est déjà utilisé');
-          } else {
-            setError('');
-          }
-        } catch (error) {
-          console.error('Erreur lors de la vérification de l\'email:', error);
-        }
-      }, 500);
-    }
   };
 
   const validateForm = () => {
@@ -70,12 +50,6 @@ function RegisterForm({ onRegisterSuccess }) {
       return false;
     }
     
-    // Vérification de l'unicité de l'email
-    if (!emailUnique) {
-      setError('Cet email est déjà utilisé');
-      return false;
-    }
-    
     // Validation mot de passe avec regex
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/;
     if (!passwordRegex.test(formData.password)) {
@@ -91,17 +65,28 @@ function RegisterForm({ onRegisterSuccess }) {
     setError('');
     setSuccess('');
     if (!validateForm()) return;
+    
     setLoading(true);
-    const dataToSend = { 
-      ...formData,
-      profil_pictures: null,
-      birthdates: null,
-      hobbies: null,
-      Id_Calendrier: 1,
-      Id_CSP: 1
-    };
-    delete dataToSend.confirmPassword;
+    
     try {
+      // Vérifier l'unicité de l'email avant l'inscription
+      const emailCheck = await authService.checkEmailUniqueness(formData.mail);
+      if (!emailCheck.isUnique) {
+        setError('Cet email est déjà utilisé');
+        setLoading(false);
+        return;
+      }
+      
+      const dataToSend = { 
+        ...formData,
+        profil_pictures: null,
+        birthdates: null,
+        hobbies: null,
+        Id_Calendrier: 1,
+        Id_CSP: 1
+      };
+      delete dataToSend.confirmPassword;
+      
       const res = await fetch('http://localhost:3001/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -132,14 +117,7 @@ function RegisterForm({ onRegisterSuccess }) {
       <form onSubmit={handleSubmit} className="register-form">
         <input type="text" name="name" placeholder="Nom" value={formData.name} onChange={handleChange} className="register-input" required />
         <input type="text" name="firstname" placeholder="Prénom" value={formData.firstname} onChange={handleChange} className="register-input" required />
-        <select name="children_number" value={formData.children_number} onChange={handleChange} className="register-input" required>
-          <option value="">Nombre(s) d'enfant(s)</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5+">5 ou plus</option>
-        </select>
+
         <select name="situation" value={formData.situation} onChange={handleChange} className="register-input" required>
           <option value="">Situation</option>
           <option value="parent">Parent</option>

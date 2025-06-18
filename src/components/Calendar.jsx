@@ -3,6 +3,8 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { useNavigate } from 'react-router-dom';
+import Footer_Fin from './Footer/Footer_Fin';
+import Footer_Pub from './Footer/Footer_Pub';
 
 // Style minimal pour ne pas toucher aux fichiers CSS de l'élève
 const calendarStyle = {
@@ -386,6 +388,8 @@ const Calendar = ({ userId }) => {
           </form>
         </div>
       )}
+            <Footer_Fin/>
+            <Footer_Pub/>
     </div>
   );
 };
