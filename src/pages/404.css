@@ -1,0 +1,42 @@
+/* Styles pour la page 404 inspirés de LoginPage */
+
+.error-page-404 {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+.error-box-404 {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(180, 160, 200, 0.10);
+  padding: 2rem 1.5rem;
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.error-title-404 {
+  color: #5c4d6d;
+  margin-bottom: 1.5rem;
+  font-size: 1.7rem;
+}
+
+.error-message-404 {
+  color: #a18acb;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.error-detail-404 {
+  color: #d9534f;
+  background-color: #f8d7da;
+  border-radius: 8px;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+} 
