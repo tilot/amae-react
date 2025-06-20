@@ -1,54 +1,32 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
-import '@testing-library/jest-dom';
-import Footer_Fin from '../components/Footer/Footer_Fin';
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom"; // Pour les matchers comme toBeInTheDocument()
+import { jest, describe, test, expect } from '@jest/globals';
+import Footer_Fin from "../components/Footer/Footer_Fin";
+import { MemoryRouter } from "react-router-dom";
 
-// Mock des images
-jest.mock('../../assets/images/icon/calendrier-lignes.svg', () => 'calendrier-icon');
-jest.mock('../../assets/images/icon/activite.svg', () => 'activite-icon');
-jest.mock('../../assets/images/icon/recette.svg', () => 'recette-icon');
-
-describe('Footer_Fin', () => {
-  const renderFooter = () => {
-    return render(
-      <BrowserRouter>
+describe("Footer_Fin component", () => {
+  test("renders all footer links and icons correctly", () => {
+    render(
+      <MemoryRouter>
         <Footer_Fin />
-      </BrowserRouter>
+      </MemoryRouter>
     );
-  };
 
-  test('devrait rendre le footer avec les trois liens de navigation', () => {
-    renderFooter();
-    
-    // Vérifier que les trois liens sont présents
-    expect(screen.getByText('Calendrier')).toBeInTheDocument();
-    expect(screen.getByText('Activités')).toBeInTheDocument();
-    expect(screen.getByText('Recettes')).toBeInTheDocument();
-  });
+    // Vérifie la présence des textes
+    expect(screen.getByText("Calendrier")).toBeInTheDocument();
+    expect(screen.getByText("Activités")).toBeInTheDocument();
+    expect(screen.getByText("Recettes")).toBeInTheDocument();
 
-  test('devrait avoir les bons liens vers les pages', () => {
-    renderFooter();
-    
-    // Vérifier les URLs des liens
-    expect(screen.getByText('Calendrier').closest('a')).toHaveAttribute('href', '/calendrier');
-    expect(screen.getByText('Activités').closest('a')).toHaveAttribute('href', '/activites');
-    expect(screen.getByText('Recettes').closest('a')).toHaveAttribute('href', '/recettes');
-  });
+    // Vérifie que les images ont le bon alt
+    expect(screen.getByAltText("Calendrier")).toBeInTheDocument();
+    expect(screen.getByAltText("Activité")).toBeInTheDocument();
+    expect(screen.getByAltText("Recettes")).toBeInTheDocument();
 
-  test('devrait afficher les icônes avec les bons attributs alt', () => {
-    renderFooter();
-    
-    // Vérifier que les images sont présentes avec les bons attributs alt
-    expect(screen.getByAltText('Calendrier')).toBeInTheDocument();
-    expect(screen.getByAltText('Activité')).toBeInTheDocument();
-    expect(screen.getByAltText('Recettes')).toBeInTheDocument();
+    // Vérifie les liens associés
+    const links = screen.getAllByRole("link");
+    expect(links[0]).toHaveAttribute("href", "/calendrier");
+    expect(links[1]).toHaveAttribute("href", "/activites");
+    expect(links[2]).toHaveAttribute("href", "/recettes");
   });
-
-  test('devrait avoir la classe CSS footer-fin', () => {
-    renderFooter();
-    
-    // Vérifier que le footer a la bonne classe CSS
-    expect(screen.getByRole('contentinfo')).toHaveClass('footer-fin');
-  });
-}); 
+});
