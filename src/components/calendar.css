@@ -27,21 +27,24 @@
   padding: 2rem;
   min-width: 320px;
   box-shadow: 0 2px 16px rgba(0,0,0,0.15);
+  color: #222;
 }
 
 /* Bouton principal */
 .calendar-btn-main {
   padding: 0.5rem 1rem;
-  background: #3788d8;
+  background: #7c5fa3;
   color: #fff;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  font-weight: 600;
 }
 
 /* Titre centré */
 .calendar-title {
   text-align: center;
+  color: #5c4d6d;
 }
 
 /* Champs du formulaire */
