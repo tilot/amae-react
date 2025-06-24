@@ -5,37 +5,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { useNavigate } from 'react-router-dom';
 import Footer_Fin from './Footer/Footer_Fin';
 import Footer_Pub from './Footer/Footer_Pub';
-
-// Style minimal pour ne pas toucher aux fichiers CSS de l'élève
-const calendarStyle = {
-  maxWidth: '900px',
-  margin: '2rem auto',
-  background: '#fff',
-  borderRadius: '16px',
-  boxShadow: '0 4px 24px rgba(0,0,0,0.07)',
-  padding: '1rem',
-};
-
-// Style pour la modale
-const modalStyle = {
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  width: '100vw',
-  height: '100vh',
-  background: 'rgba(0,0,0,0.3)',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  zIndex: 1000
-};
-const modalContentStyle = {
-  background: '#fff',
-  borderRadius: '12px',
-  padding: '2rem',
-  minWidth: '320px',
-  boxShadow: '0 2px 16px rgba(0,0,0,0.15)'
-};
+import './calendar.css';
 
 function addDays(date, days) {
   const d = new Date(date);
@@ -209,16 +179,6 @@ const Calendar = ({ userId }) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Gère la sélection des amis à partager
-  const handleFriendSelect = (e) => {
-    const value = Number(e.target.value);
-    if (e.target.checked) {
-      setSelectedFriends(prev => [...prev, value]);
-    } else {
-      setSelectedFriends(prev => prev.filter(id => id !== value));
-    }
-  };
-
   // Validation du formulaire (création ou édition)
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -307,13 +267,13 @@ const Calendar = ({ userId }) => {
   };
 
   return (
-    <div style={calendarStyle}>
+    <div className="calendar-container">
       <div style={{display:'flex',justifyContent:'flex-end',marginBottom:'1rem'}}>
-        <button onClick={() => navigate('/amis')} style={{padding:'0.5rem 1rem',background:'#3788d8',color:'#fff',border:'none',borderRadius:6,cursor:'pointer'}}>
+        <button onClick={() => navigate('/amis')} className="calendar-btn-main">
           Gérer mes amis/proches
         </button>
       </div>
-      <h2 style={{textAlign:'center'}}>Mon calendrier partagé</h2>
+      <h2 className="calendar-title">Mon calendrier partagé</h2>
       <FullCalendar
         plugins={[dayGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
@@ -324,28 +284,28 @@ const Calendar = ({ userId }) => {
         eventContent={renderEventContent}
       />
       {modalOpen && (
-        <div style={modalStyle}>
-          <form style={modalContentStyle} onSubmit={handleSubmit}>
+        <div className="calendar-modal">
+          <form className="calendar-modal-content" onSubmit={handleSubmit}>
             <h3>Nouvel événement le {modalDate}</h3>
-            <div style={{marginBottom:'1rem'}}>
+            <div className="calendar-form-group">
               <label>Titre*<br/>
-                <input name="title" value={form.title} onChange={handleChange} required style={{width:'100%'}} />
+                <input name="title" value={form.title} onChange={handleChange} required className="calendar-form-input" />
               </label>
             </div>
-            <div style={{marginBottom:'1rem'}}>
+            <div className="calendar-form-group">
               <label>Description<br/>
-                <textarea name="description" value={form.description} onChange={handleChange} style={{width:'100%'}} />
+                <textarea name="description" value={form.description} onChange={handleChange} className="calendar-form-textarea" />
               </label>
             </div>
-            <div style={{marginBottom:'1rem', display:'flex', gap:'1rem'}}>
+            <div className="calendar-form-row">
               <label>Heure de début*<br/>
-                <input type="time" name="startTime" value={form.startTime} onChange={handleChange} required />
+                <input type="time" name="startTime" value={form.startTime} onChange={handleChange} required className="calendar-form-input" />
               </label>
               <label>Heure de fin*<br/>
-                <input type="time" name="endTime" value={form.endTime} onChange={handleChange} required />
+                <input type="time" name="endTime" value={form.endTime} onChange={handleChange} required className="calendar-form-input" />
               </label>
             </div>
-            <div style={{marginBottom:'1rem'}}>
+            <div className="calendar-form-group">
               <label>Répétition<br/>
                 <select name="Id_Recurrence_enevenement" value={form.Id_Recurrence_enevenement} onChange={handleChange}>
                   <option value={4}>Ponctuel</option>
@@ -356,16 +316,16 @@ const Calendar = ({ userId }) => {
               </label>
             </div>
             {(form.creator_firstname || form.creator_name) && (
-              <div style={{marginBottom:'1rem',fontSize:'0.9em',color:'#555'}}>
+              <div className="calendar-form-group" style={{fontSize:'0.9em',color:'#555'}}>
                 Créé par : {form.creator_firstname || ''} {form.creator_name || ''}
               </div>
             )}
-            <div style={{marginBottom:'1rem'}}>
+            <div className="calendar-form-group">
               <label>Partager avec :<br/>
                 <select multiple value={selectedFriends.map(String)} onChange={e => {
                   const options = Array.from(e.target.selectedOptions);
                   setSelectedFriends(options.map(opt => Number(opt.value)));
-                }} style={{width:'100%',minHeight:60}}>
+                }} className="calendar-form-select" style={{minHeight:60}}>
                   {friends.length === 0 && <option disabled>Aucun ami/proche accepté</option>}
                   {friends.map(r => {
                     const otherId = String(r.user_id_1) === String(userId) ? r.user_id_2 : r.user_id_1;
@@ -378,9 +338,9 @@ const Calendar = ({ userId }) => {
                 </select>
               </label>
             </div>
-            <div style={{display:'flex', justifyContent:'flex-end', gap:'1rem'}}>
+            <div className="calendar-modal-footer">
               {editEventId && (
-                <button type="button" onClick={handleDelete} style={{color:'red'}}>Supprimer</button>
+                <button type="button" onClick={handleDelete} className="calendar-btn-delete">Supprimer</button>
               )}
               <button type="button" onClick={handleClose}>Annuler</button>
               <button type="submit">{editEventId ? 'Modifier' : 'Créer'}</button>

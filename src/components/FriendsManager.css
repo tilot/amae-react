@@ -1,0 +1,46 @@
+.friends-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  background: #f9f9f9;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.friends-form {
+  margin-bottom: 1rem;
+}
+.friends-form input[type="email"] {
+  width: 60%;
+}
+.friends-form select {
+  margin-left: 8px;
+}
+.friends-form button {
+  margin-left: 8px;
+}
+.friends-feedback-error {
+  color: red;
+  margin-top: 4px;
+}
+.friends-feedback-success {
+  color: green;
+  margin-top: 4px;
+}
+
+.friends-pending {
+  margin-bottom: 1rem;
+}
+.friends-pending-item {
+  margin-bottom: 4px;
+}
+.friends-pending-item button {
+  margin-left: 8px;
+}
+
+.friends-list-item {
+  margin-bottom: 4px;
+}
+.friends-list-item .delete-btn {
+  margin-left: 8px;
+  color: red;
+} 

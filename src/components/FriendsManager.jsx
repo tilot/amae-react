@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './FriendsManager.css';
 
 /**
  * Base endpoint for all relation-related operations.
@@ -32,13 +33,13 @@ const FriendsManager = ({ userId }) => {
   // Incoming relation requests the user still needs to review
   const [pending, setPending] = useState([]);
 
-  // Controlled field for the e‑mail typed in the “add” input
+  // Controlled field for the e‑mail typed in the "add" input
   const [emailToAdd, setEmailToAdd] = useState('');
 
   // Current relation type selected in the <select>
   const [relationType, setRelationType] = useState('ami');
 
-  // User feedback messages after a “send request” attempt
+  // User feedback messages after a "send request" attempt
   const [addError, setAddError] = useState('');
   const [addSuccess, setAddSuccess] = useState('');
 
@@ -111,7 +112,7 @@ const FriendsManager = ({ userId }) => {
           setEmailToAdd('');
           fetchPending(); // refresh notifications
         } else {
-          setAddError(data.message || 'Erreur lors de l’envoi de la demande');
+          setAddError(data.message || 'Erreur lors de l'envoi de la demande');
         }
       })
       .catch(() => setAddError('Erreur réseau'));
@@ -158,66 +159,54 @@ const FriendsManager = ({ userId }) => {
 
   /* ---------- Render helpers / JSX ---------- */
   return (
-    <div
-      style={{
-        maxWidth: 400,
-        margin: '2rem auto',
-        background: '#f9f9f9',
-        padding: '1rem',
-        borderRadius: 8,
-      }}
-    >
+    <div className="friends-container">
       <h3>Gérer mes amis/proches</h3>
 
       {/* ---- Add relation form ---- */}
-      <div style={{ marginBottom: '1rem' }}>
+      <div className="friends-form">
         <input
           type="email"
           placeholder="Adresse mail de l'utilisateur à ajouter"
           value={emailToAdd}
           onChange={e => setEmailToAdd(e.target.value)}
-          style={{ width: '60%' }}
         />
         <select
           value={relationType}
           onChange={e => setRelationType(e.target.value)}
-          style={{ marginLeft: 8 }}
         >
           <option value="ami">Ami</option>
           <option value="parent">Parent</option>
           <option value="proche">Proche</option>
         </select>
-        <button onClick={sendRequest} style={{ marginLeft: 8 }}>
+        <button onClick={sendRequest}>
           Envoyer une demande
         </button>
 
         {/* Feedback messages */}
         {addError && (
-          <div style={{ color: 'red', marginTop: 4 }}>{addError}</div>
+          <div className="friends-feedback-error">{addError}</div>
         )}
         {addSuccess && (
-          <div style={{ color: 'green', marginTop: 4 }}>{addSuccess}</div>
+          <div className="friends-feedback-success">{addSuccess}</div>
         )}
       </div>
 
       {/* ---- Pending requests ---- */}
-      <div style={{ marginBottom: '1rem' }}>
+      <div className="friends-pending">
         <h4>Demandes reçues</h4>
         {pending.length === 0 && <div>Aucune demande en attente.</div>}
         {pending.map(r => (
-          <div key={r.id} style={{ marginBottom: 4 }}>
+          <div key={r.id} className="friends-pending-item">
             De l'utilisateur {r.user_id_1} (
             {users.find(u => u.Id_User === r.user_id_1)?.mail || '...'}), type:{' '}
             {r.relation_type}
             <button
               onClick={() => acceptRequest(r.user_id_1)}
-              style={{ marginLeft: 8 }}
             >
               Accepter
             </button>
             <button
               onClick={() => rejectRequest(r.user_id_1)}
-              style={{ marginLeft: 8 }}
             >
               Refuser
             </button>
@@ -230,19 +219,19 @@ const FriendsManager = ({ userId }) => {
         <h4>Mes amis/proches</h4>
         {friends.length === 0 && <div>Aucun ami/proche accepté.</div>}
         {friends.map(r => {
-          // Figure out which of the 2 user IDs is “the other person”
+          // Figure out which of the 2 user IDs is "the other person"
           const otherId = r.user_id_1 === userId ? r.user_id_2 : r.user_id_1;
           const user = users.find(u => u.Id_User === otherId);
 
           return (
-            <div key={r.id} style={{ marginBottom: 4 }}>
+            <div key={r.id} className="friends-list-item">
               {user
                 ? `${user.firstname} ${user.name} (${user.mail})`
                 : `Utilisateur ${otherId}`}{' '}
               - {r.relation_type}
               <button
                 onClick={() => deleteRelation(otherId)}
-                style={{ marginLeft: 8, color: 'red' }}
+                className="delete-btn"
               >
                 Supprimer
               </button>
