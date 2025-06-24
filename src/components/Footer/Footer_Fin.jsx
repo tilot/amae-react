@@ -4,6 +4,7 @@ import "./Footer_Fin.css";
 import calendrierIcon from "../../assets/images/icon/calendrier-lignes.svg";
 import activiteIcon from "../../assets/images/icon/activite.svg";
 import recetteIcon from "../../assets/images/icon/recette.svg";
+import bonplanIcon from "../../assets/images/icon/bons_plans.svg";
 
 const Footer_Fin = () => {
   return (
@@ -11,15 +12,15 @@ const Footer_Fin = () => {
       <div className="footer-icons">
         <Link to="/calendrier" className="footer-link">
           <img src={calendrierIcon} alt="Calendrier" className="footer-icon" />
-          <span>Calendrier</span>
         </Link>
         <Link to="/activites" className="footer-link">
           <img src={activiteIcon} alt="Activité" className="footer-icon" />
-          <span>Activités</span>
         </Link>
         <Link to="/recettes" className="footer-link">
           <img src={recetteIcon} alt="Recettes" className="footer-icon" />
-          <span>Recettes</span>
+        </Link>
+        <Link to="/smart_Deal" className="footer-link">
+          <img src={bonplanIcon} alt="Recettes" className="footer-icon" />
         </Link>
       </div>
     </footer>

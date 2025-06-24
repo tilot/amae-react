@@ -13,20 +13,18 @@ describe("Footer_Fin component", () => {
       </MemoryRouter>
     );
 
-    // Vérifie la présence des textes
-    expect(screen.getByText("Calendrier")).toBeInTheDocument();
-    expect(screen.getByText("Activités")).toBeInTheDocument();
-    expect(screen.getByText("Recettes")).toBeInTheDocument();
-
-    // Vérifie que les images ont le bon alt
+    // Vérifie la présence des icônes par leur alt
     expect(screen.getByAltText("Calendrier")).toBeInTheDocument();
     expect(screen.getByAltText("Activité")).toBeInTheDocument();
-    expect(screen.getByAltText("Recettes")).toBeInTheDocument();
+    expect(screen.getAllByAltText("Recettes")).toHaveLength(2); // Recettes et Bons plans
 
     // Vérifie les liens associés
     const links = screen.getAllByRole("link");
     expect(links[0]).toHaveAttribute("href", "/calendrier");
     expect(links[1]).toHaveAttribute("href", "/activites");
     expect(links[2]).toHaveAttribute("href", "/recettes");
+    expect(links[3]).toHaveAttribute("href", "/smart_Deal");
+
+
   });
 });

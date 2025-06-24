@@ -15,7 +15,7 @@ const SmartDealDetailPage = () => {
         const data = await smartDealService.getSmartDealById(id);
         setDeal(data);
         setLoading(false);
-      } catch (err) {
+      } catch {
         setError('Erreur lors du chargement du smart deal');
         setLoading(false);
       }
@@ -59,7 +59,6 @@ const SmartDealDetailPage = () => {
               <strong>Stock disponible :</strong> {deal.stockQuantity}
             </div>
           </div>
-          <button className="buy-button">Acheter maintenant</button>
         </div>
       </div>
 

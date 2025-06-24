@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { smartDealService } from '../../services/api';
 import './SmartDealListPage.css';
+import bonplan_img from '../../assets/images/bon_plan.webp';
+import Footer_Fin from '../../components/Footer/Footer_Fin';
 
 const SmartDealListPage = () => {
   const [smartDeals, setSmartDeals] = useState([]);
@@ -32,7 +34,7 @@ const SmartDealListPage = () => {
         {smartDeals.map((deal) => (
           <div key={deal.id} className="smart-deal-card amae-card">
             <div className="deal-image">
-              <img src={deal.image} alt={deal.title} />
+              <img src={bonplan_img} alt={deal.title} />
               {deal.discount && (
                 <div className="discount-badge amae-badge">
                   -{deal.discount}%
@@ -41,21 +43,16 @@ const SmartDealListPage = () => {
             </div>
             <div className="deal-info">
               <h2>{deal.title}</h2>
+              <p className="smartdeal-name">{deal.name}</p>
               <p className="description">{deal.description}</p>
-              <div className="price-info">
-                <span className="original-price">{deal.originalPrice}€</span>
-                <span className="current-price">{deal.currentPrice}€</span>
-              </div>
-              <div className="deal-meta">
-                <span className="validity">Valable jusqu'au {new Date(deal.validUntil).toLocaleDateString()}</span>
-              </div>
-              <Link to={`/smart-deal/${deal.id}`} className="amae-btn">
-                Voir le bon plan
-              </Link>
+              
+             
+              
             </div>
           </div>
         ))}
       </div>
+      <Footer_Fin/>
     </div>
   );
 };
