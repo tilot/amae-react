@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { recipeService } from '../../../services/api';
 import SearchBar from '../../Common/SearchBar/SearchBar';
 import './RecetteList.css';
-import recette_image from '../../../assets/images/recette_image.jpg';
+import image_sucre from '../../../assets/images/recette_sucre.jpg';
+import image_sale from '../../../assets/images/recette_sale.jpg';
 
 const RecetteList = () => {
   const [recipes, setRecipes] = useState([]);
@@ -71,7 +72,7 @@ const RecetteList = () => {
         {filteredRecipes.map((recipe) => (
           <div className="recipe-card amae-card" key={recipe.id}>
             <div className="recipe-image">
-              <img src={recette_image} alt={recipe.name} />
+              <img src={recipe.category === 'sucre' ? image_sucre : image_sale} alt={recipe.name} />
             </div>
             <div className="recipe-info">
               <h3>{recipe.name}</h3>

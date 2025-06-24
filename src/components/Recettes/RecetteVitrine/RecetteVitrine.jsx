@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './RecetteVitrine.css';
-import image_sucre from '../../../assets/images/recette_sucre.jpg';
+import {image_sucre} from '../../../assets/images/recette_sucre.jpg';
 import image_sale from '../../../assets/images/recette_sale.jpg';
 
 const RecetteVitrine = () => {
