@@ -112,7 +112,7 @@ const FriendsManager = ({ userId }) => {
           setEmailToAdd('');
           fetchPending(); // refresh notifications
         } else {
-          setAddError(data.message || 'Erreur lors de l'envoi de la demande');
+          setAddError(data.message || "Erreur lors de l'envoi de la demande");
         }
       })
       .catch(() => setAddError('Erreur réseau'));

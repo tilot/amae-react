@@ -12,13 +12,13 @@ const LoginPage = () => {
   };
 
   return (
-    <> <div className="login-box">
+    <div className="login-box">
         <h1>Connexion</h1>
         <LoginForm onLoginSuccess={handleLoginSuccess} />
         <Footer />
       </div>
       
-    </>
+    
 
   );
 };

@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './RecetteVitrine.css';
-import recette_image from '../../../assets/images/recette_image.jpg';
+import image_sucre from '../../../assets/images/recette_sucre.jpg';
+import image_sale from '../../../assets/images/recette_sale.jpg';
 
 const RecetteVitrine = () => {
   const [filter, setFilter] = useState('all'); // 'all', 'sale', 'sucre'
@@ -35,14 +36,14 @@ const RecetteVitrine = () => {
       <div className="recette-categories">
         <Link to="/recettes/sale" className="category-card amae-card">
           <div className="category-image sale-image">
-            <img src={recette_image} alt="Recettes salées" />
+            <img src={image_sale} alt="Recettes salées" />
             <span className="category-text">Salé</span>
           </div>
         </Link>
 
         <Link to="/recettes/sucre" className="category-card amae-card">
           <div className="category-image sucre-image">
-            <img src={recette_image} alt="Recettes sucrées" />
+            <img src={image_sucre} alt="Recettes sucrées" />
             <span className="category-text">Sucré</span>
           </div>
         </Link>
