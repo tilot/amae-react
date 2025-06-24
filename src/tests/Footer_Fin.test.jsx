@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom"; // Pour les matchers comme toBeInTheDocument()
-import { jest, describe, test, expect } from '@jest/globals';
+import { describe, test, expect } from '@jest/globals';
 import Footer_Fin from "../components/Footer/Footer_Fin";
 import { MemoryRouter } from "react-router-dom";
 
