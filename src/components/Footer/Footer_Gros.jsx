@@ -12,12 +12,6 @@ export default function Footer_Gros() {
         <img src={logoAmae} alt="Logo Amae" className="footer-logo" />
       </div>
       <div className="footer-content">
-        <div className="footer-links">
-          <a href="#contact">Contact</a>
-          <a href={cguPdf} target="_blank" rel="noopener noreferrer">Conditions générales d'utilisation</a>
-          <a href={cgvPdf} target="_blank" rel="noopener noreferrer">Conditions générales de ventes</a>
-          <a href={rgpdPdf} target="_blank" rel="noopener noreferrer">Politique de confidentialité</a>
-        </div>
         <div className="footer-socials">
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -31,6 +25,12 @@ export default function Footer_Gros() {
               <path d="M16.5 8.5V13.5C16.5 15.43 14.93 17 13 17C11.07 17 9.5 15.43 9.5 13.5C9.5 11.57 11.07 10 13 10C13.28 10 13.55 10.03 13.8 10.09V8.5C13.8 8.22 14.02 8 14.3 8H16.5C16.78 8 17 8.22 17 8.5C17 8.78 16.78 9 16.5 9H14.8V13.5C14.8 14.33 14.13 15 13.3 15C12.47 15 11.8 14.33 11.8 13.5C11.8 12.67 12.47 12 13.3 12C13.58 12 13.85 12.03 14.1 12.09V10.5C14.1 10.22 14.32 10 14.6 10H16.5C16.78 10 17 10.22 17 10.5C17 10.78 16.78 11 16.5 11H14.6V13.5C14.6 14.05 14.05 14.6 13.5 14.6C12.95 14.6 12.4 14.05 12.4 13.5C12.4 12.95 12.95 12.4 13.5 12.4C13.78 12.4 14.05 12.43 14.3 12.49V8.5C14.3 8.22 14.52 8 14.8 8H16.5C16.78 8 17 8.22 17 8.5Z" fill="#B7A3CC"/>
             </svg>
           </a>
+        </div>
+        <div className="footer-links">
+          <a href="#contact">Contact</a>
+          <a href={cguPdf} target="_blank" rel="noopener noreferrer">Conditions générales d'utilisation</a>
+          <a href={cgvPdf} target="_blank" rel="noopener noreferrer">Conditions générales de ventes</a>
+          <a href={rgpdPdf} target="_blank" rel="noopener noreferrer">Politique de confidentialité</a>
         </div>
       </div>
     </footer>
