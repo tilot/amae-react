@@ -7,6 +7,7 @@
   width: 100%;
   overflow: hidden;
   box-sizing: border-box;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }
 
 .footer-curve {
@@ -39,6 +40,7 @@
   align-items: center;
   justify-content: center;
   margin-top: 60px;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }
 
 .footer-links {
@@ -47,6 +49,7 @@
   align-items: center;
   margin-bottom: 32px;
   gap: 8px;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }
 
 .footer-links a {
@@ -64,6 +67,7 @@
   display: flex;
   gap: 32px;
   margin-top: 16px;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }
 
 .footer-socials svg {

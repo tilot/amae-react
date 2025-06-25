@@ -6,7 +6,7 @@
   color: #a18acb;
   margin-bottom: 2rem;
   font-size: 2.2rem;
-  font-family: 'Segoe UI', 'Arial', sans-serif;
+  font-family: 'Poppins', 'Segoe UI', 'Arial', sans-serif;
   letter-spacing: 1px;
 }
 .amae-card {
@@ -50,6 +50,7 @@
   padding: 1rem;
   position: relative;
   background: #fafafd;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }
 
 .recipes-grid {
@@ -92,7 +93,7 @@
   margin: 0 0 0.5rem 0;
   color: #7c5fa3;
   font-size: 1.2rem;
-  font-family: 'Segoe UI', 'Arial', sans-serif;
+  font-family: 'Poppins', 'Segoe UI', 'Arial', sans-serif;
 }
 
 .recipe-description {

@@ -3,7 +3,8 @@ import { recipeService } from '../../services/api';
 import { Link } from 'react-router-dom';
 import SearchBar from '../../components/Common/SearchBar/SearchBar';
 import './RecetteListCategorie.css';
-import recette_image from '../../assets/images/recette_image.jpg';
+import image_sucre from '../../assets/images/recette_sucre.jpg';
+
 import Footer_Fin from '../../components/Footer/Footer_Fin';
 import Footer_Pub from '../../components/Footer/Footer_Pub';
 
@@ -64,7 +65,7 @@ const RecetteSucreesPage = () => {
       <div className="recette-categorie-list">
         {filtered.map(recipe => (
           <div className="recette-categorie-item" key={recipe.Id_Recette}>
-            <img src={recette_image} alt={recipe.name} className="recette-categorie-img" />
+            <img src={image_sucre} alt={recipe.name} className="recette-categorie-img" />
             <div className="recette-categorie-info">
               <h3>{recipe.name}</h3>
               <div className="recette-categorie-meta">

@@ -5,7 +5,7 @@ import SearchBar from '../../components/Common/SearchBar/SearchBar';
 import './ActiviteListCategorie.css';
 import Footer_Fin from '../../components/Footer/Footer_Fin';
 import Footer_Pub from '../../components/Footer/Footer_Pub';
-import activite_image from '../../assets/images/activite_image.webp';
+import activite_image from '../../assets/images/activite_int.jpg';
 
 const ActiviteInterieurPage = () => {
   const [activities, setActivities] = useState([]);

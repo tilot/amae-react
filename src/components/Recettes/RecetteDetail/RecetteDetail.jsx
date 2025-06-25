@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { recipeService } from '../../../services/api';
 import './RecetteDetail.css';
-import recette_image from '../../../assets/images/recette_image.jpg';
+import image_sucre from '../../../assets/images/recette_sucre.jpg';
+import image_sale from '../../../assets/images/recette_sale.jpg';
 import Footer_Fin from '../../Footer/Footer_Fin';
 import Footer_Pub from '../../Footer/Footer_Pub';
 
@@ -19,7 +20,7 @@ const RecetteDetail = () => {
         const data = await recipeService.getRecipeById(id);
         setRecipe(data);
         setLoading(false);
-      } catch (error) {
+      } catch {
         setError('Erreur lors du chargement de la recette');
         setLoading(false);
       }
@@ -37,12 +38,15 @@ const RecetteDetail = () => {
     return <div className="error">Recette non trouvée</div>;
   }
 
+  // Choix de l'image selon la catégorie
+  const recetteImage = recipe.Id_Sucree_sale == '1' ? image_sucre : image_sale;
+
   return (
     <div className="recette-detail">
       <div className="recipe-header">
         <div className="recipe-image">
           <img 
-            src={recette_image} 
+            src={recetteImage} 
             className="recette-detail-img" 
             alt={recipe.name}
           />

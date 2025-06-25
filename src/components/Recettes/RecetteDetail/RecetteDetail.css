@@ -2,6 +2,7 @@
   padding: 0px;
   max-width: 1200px;
   margin: 0;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }
 
 .recette-title {
@@ -9,6 +10,7 @@
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 2rem;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }
 
 .recettes-list {
@@ -45,12 +47,14 @@
   margin: 0;
   font-size: 1.2rem;
   color: #333;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }
 
 .recette-info p {
   margin: 0.5rem 0;
   color: #666;
   font-size: 0.9rem;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }
 
 .add-to-cart {
@@ -63,6 +67,7 @@
   font-size: 0.9rem;
   cursor: pointer;
   transition: background-color 0.2s;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }
 
 .add-to-cart:hover {
@@ -91,22 +96,6 @@
   height: 24px;
 }
 
-/* .pub-banner {
-  width: 100%;
-  height: 100px;
-  background-color: #e5e5e5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 2rem;
-  border-radius: 8px;
-}
-
-.pub-banner p {
-  font-size: 1.5rem;
-  color: #666;
-} */
-
 .recette-detail-img {
   width: 75%;
   max-height: 220px;
@@ -116,7 +105,12 @@
   border-radius: 18px;
 }
 
-  .ingredients-list {
-    grid-template-columns: 1fr;
-  }
+.ingredients-list {
+  grid-template-columns: 1fr;
+  color: #b6a4d6;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+}
+
+.ingredient-item {
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }

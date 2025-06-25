@@ -16,7 +16,7 @@ const LoginPage = () => {
         <h1>Connexion</h1>
         <LoginForm onLoginSuccess={handleLoginSuccess} />
         <Footer />
-      </div>
+    </div>
       
     
 

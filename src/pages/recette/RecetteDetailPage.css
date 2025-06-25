@@ -1,4 +1,5 @@
 .recette-detail {
+  color: #b6a4d6;
     max-width: 400px;
     margin: 2rem auto 0 auto;
     padding: 2rem 0rem 0rem 0rem;
@@ -10,7 +11,7 @@
   
   .recette-info h2 {
     font-size: 1.4rem;
-    color: #7c5fa3;
+    color: #b6a4d6;
     margin-bottom: 1.2rem;
     text-align: center;
   }
@@ -18,7 +19,7 @@
   
   .recette-metadata p {
     margin: 0.5rem 0;
-    color: #5c4d6d;
+    color: #b6a4d6;
     font-size: 1.05rem;
   }
   

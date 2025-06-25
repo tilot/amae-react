@@ -1,4 +1,6 @@
 import React from 'react';
+import activite_int from '../../../assets/images/activite_int.jpg';
+import activite_ext from '../../../assets/images/activite_ext.jpg';
 import activite_image from '../../../assets/images/activite_image.webp';
 
 const ActiviteInfo = ({ activite }) => {

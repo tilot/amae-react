@@ -138,4 +138,8 @@
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
   }
+}
+
+.login-container, .login-form, .form-group, .login-button {
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
 } 

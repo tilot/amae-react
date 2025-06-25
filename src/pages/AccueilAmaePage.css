@@ -1,0 +1,132 @@
+.accueil-amae-container, .accueil-header, .accueil-main-image-container, .accueil-content, .accueil-login, .accueil-register {
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+}
+
+.accueil-amae-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #fafafa;
+}
+
+.accueil-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 1.5rem 0.5rem 1.5rem;
+  background: transparent;
+}
+
+.accueil-logo {
+  height: 38px;
+  width: auto;
+}
+
+.accueil-header-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.accueil-login {
+  background: #fff;
+  color: #333;
+  border: none;
+  font-weight: 500;
+  padding: 0.4rem 1.2rem;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 1rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  transition: background 0.2s;
+}
+
+.accueil-login:hover {
+  background: #f0e6fa;
+}
+
+.accueil-register {
+  background: #b7a3cc;
+  color: #fff;
+  border: none;
+  font-weight: 500;
+  padding: 0.4rem 1.2rem;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 1rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  transition: background 0.2s;
+}
+
+.accueil-register:hover {
+  background: #a18bb8;
+}
+
+.accueil-main-image-container {
+  position: relative;
+  margin: 1.2rem 1.5rem 0 1.5rem;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(183,163,204,0.13);
+  max-width: 420px;
+  align-self: center;
+}
+
+.accueil-main-image {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  min-height: 180px;
+  max-height: 220px;
+}
+
+.accueil-main-image-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(183,163,204,0.7);
+  color: #fff;
+  padding: 0.7rem 1.2rem;
+  font-size: 1.1rem;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+}
+
+.accueil-content {
+  padding: 2rem 1.5rem 1rem 1.5rem;
+  max-width: 480px;
+  margin: 0 auto;
+  color: #222;
+}
+
+.accueil-content h2 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 0.7rem;
+}
+
+.accueil-content h3 {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.accueil-content p {
+  font-size: 1rem;
+  margin-bottom: 0.7rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .accueil-main-image-container, .accueil-content {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .accueil-header {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+} 
