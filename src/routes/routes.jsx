@@ -13,6 +13,8 @@ import ActiviteVitrinePage from "../pages/activite/ActiviteVitrinePage";
 import ActiviteInterieurPage from "../pages/activite/ActiviteInterieurPage";
 import ActiviteExterieurPage from "../pages/activite/ActiviteExterieurPage";
 import ActiviteDetailPage from "../pages/activite/ActiviteDetailPage";
+import AccueilAmaePage from "../pages/AccueilAmaePage";
+import BlogPage from "../pages/BlogPage";
 // import MoodboardListPage from "../pages/moodboard/MoodboardListPage";
 // import MoodboardDetailPage from "../pages/moodboard/MoodboardDetailPage";
 import SmartDealListPage from "../pages/smartDeal/SmartDealListPage";
@@ -26,7 +28,12 @@ import FriendsPage from "../pages/FriendsPage";
 const router = createBrowserRouter([
   { 
     path: "/", 
-    element: <LoginPage />, 
+    element: <AccueilAmaePage />, 
+    errorElement: <ErrorPage /> 
+  },
+  { 
+    path: "/blog", 
+    element: <BlogPage />, 
     errorElement: <ErrorPage /> 
   },
   { 

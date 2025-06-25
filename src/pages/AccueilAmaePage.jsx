@@ -1,7 +1,7 @@
 import React from 'react';
 import FooterGros from '../components/Footer/Footer_Gros';
 import logoPapillon from '../assets/images/logo/noir.png';
-import mainImage from '../assets/images/activite_image.webp';
+import mainImage from '../assets/images/acceuil_image.jpg';
 import { Link } from 'react-router-dom';
 import './AccueilAmaePage.css';
 
@@ -12,8 +12,8 @@ const AccueilAmaePage = () => {
       <header className="accueil-header">
         <img src={logoPapillon} alt="Logo papillon Amaé" className="accueil-logo" />
         <div className="accueil-header-actions">
-          <Link to="/login" className="accueil-login">Se connecter</Link>
-          <Link to="/register" className="accueil-register">Créer un compte</Link>
+          <Link to="/blog" className="accueil-login">Blog</Link>
+          <Link to="/login" className="accueil-register">Se connecter</Link>
         </div>
       </header>
 
